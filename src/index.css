@@ -16,3 +16,13 @@ body {
   padding: 1em;
   height: 100vh;
 }
+
+@media (max-width: 425px) {
+  body {
+    padding: 0.5em;
+  }
+
+  div.cards {
+    max-height: 90vw;
+  }
+}
