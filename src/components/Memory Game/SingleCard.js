@@ -1,12 +1,14 @@
-export function SingleCard({ card, handleCardChoice }) {
-    function handleClick(){
-        handleCardChoice(card)
+export function SingleCard({ card, handleCardChoice, flipped, disabled }) {
+    function handleClick() {
+        if (!disabled) {
+            handleCardChoice(card)
+        }
     }
 
     return (
-    <div className='card' key={card.id}>
-        <img className='front' src={card.src}></img>
-        <img className='back' onClick={handleClick} src='memory_game/back.jpg'></img>
-    </div>
+        <div className={flipped ? 'card flipped' : 'card'} key={card.id}>
+            <img className='front' src={card.src}></img>
+            <img className='back' onClick={handleClick} src='memory_game/back.jpg'></img>
+        </div>
     )
 }

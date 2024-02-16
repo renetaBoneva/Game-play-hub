@@ -16,6 +16,8 @@ export function MemoryGame() {
     const [turns, setTurns] = useState(0);
     const [firstCard, setFirstCard] = useState(null);
     const [secondCard, setSecondCard] = useState(null);
+    const [disabled, setDisabled] = useState(false);
+
 
     useEffect(() => {
         shuffleCards()
@@ -36,11 +38,11 @@ export function MemoryGame() {
 
     function handleCardChoice(card) {
         firstCard ? setSecondCard(card) : setFirstCard(card);
-        console.log(card);
     }
 
     useEffect(() => {
         if (firstCard && secondCard) {
+            setDisabled(true)
             if (firstCard.src === secondCard.src) {
                 setCards(cards => cards.map(card => card.src === firstCard.src
                     ? { ...card, matched: true }
@@ -48,7 +50,7 @@ export function MemoryGame() {
                 );
                 nextTurn();
             } else {
-                nextTurn();
+                setTimeout(() => nextTurn(), 1000);
             }
         }
     }, [firstCard, secondCard])
@@ -56,7 +58,8 @@ export function MemoryGame() {
     function nextTurn() {
         setFirstCard(null);
         setSecondCard(null);
-        setTurns(turns => turns++)
+        setTurns(turns => ++turns)
+        setDisabled(false)
     }
 
     return (
@@ -71,6 +74,8 @@ export function MemoryGame() {
                     key={card.id}
                     card={card}
                     handleCardChoice={handleCardChoice}
+                    flipped={card === firstCard || card === secondCard || card.matched}
+                    disabled={disabled}
                 />))}
             </div>
         </div>)
