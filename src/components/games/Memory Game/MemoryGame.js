@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import * as style from './MemoryGame.css'
+import './MemoryGame.css'
 import { SingleCard } from './SingleCard';
 
 const images = [
