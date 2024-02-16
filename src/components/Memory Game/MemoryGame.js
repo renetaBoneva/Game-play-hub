@@ -17,7 +17,7 @@ export function MemoryGame() {
     const [firstCard, setFirstCard] = useState(null);
     const [secondCard, setSecondCard] = useState(null);
     const [disabled, setDisabled] = useState(false);
-
+    const [gameOver, setGameOver] = useState(false);
 
     useEffect(() => {
         shuffleCards()
@@ -41,19 +41,25 @@ export function MemoryGame() {
     }
 
     useEffect(() => {
-        if (firstCard && secondCard) {
-            setDisabled(true)
-            if (firstCard.src === secondCard.src) {
-                setCards(cards => cards.map(card => card.src === firstCard.src
-                    ? { ...card, matched: true }
-                    : card)
-                );
-                nextTurn();
-            } else {
-                setTimeout(() => nextTurn(), 1000);
+        const unmachedCardsArr = cards.filter(card => !card.matched);
+        if (unmachedCardsArr.length > 0) {
+            if (firstCard && secondCard) {
+                setDisabled(true)
+                if (firstCard.src === secondCard.src) {
+                    setCards(cards => cards.map(card => card.src === firstCard.src
+                        ? { ...card, matched: true }
+                        : card)
+                    );
+                    nextTurn();
+                } else {
+                    setTimeout(() => nextTurn(), 1000);
+                }
             }
+            setGameOver(false);
+        } else {
+            setGameOver(true);
         }
-    }, [firstCard, secondCard])
+    }, [firstCard, secondCard, cards])
 
     function nextTurn() {
         setFirstCard(null);
@@ -62,21 +68,22 @@ export function MemoryGame() {
         setDisabled(false)
     }
 
-    return (
-        <div className='gameWrapper'>
-            <h2>Memory Game</h2>
-            <p>Turns: {turns}</p>
-            <div>
-                <button onClick={shuffleCards}>New game</button>
-            </div>
-            <div className='cards'>
-                {cards.map(card => (<SingleCard
-                    key={card.id}
-                    card={card}
-                    handleCardChoice={handleCardChoice}
-                    flipped={card === firstCard || card === secondCard || card.matched}
-                    disabled={disabled}
-                />))}
-            </div>
-        </div>)
+    return (<div className='gameWrapper'>
+        <h2>Memory Game</h2>
+        {gameOver
+            ? (<h3>Congrats! You made it with {turns} turns!</h3>)
+            : <p>Turns: {turns}</p>}
+        <div>
+            <button onClick={shuffleCards}>New game</button>
+        </div>
+        <div className='cards'>
+            {cards.map(card => (<SingleCard
+                key={card.id}
+                card={card}
+                handleCardChoice={handleCardChoice}
+                flipped={card === firstCard || card === secondCard || card.matched}
+                disabled={disabled}
+            />))}
+        </div>
+    </div>)
 }
