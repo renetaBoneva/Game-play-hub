@@ -9,8 +9,16 @@ function App() {
       <Navigation />
       <div className='contentWrapper'>
         <Routes>
-          {/* <BubbleGame /> */}
           <Route path='/memoryGame' element={<MemoryGame />} />
+
+          {/* TODO: */}
+          {/* <Route path='/underTheSea' element={<BubbleGame />} /> */}
+          {/* <Route path='/catalog' element={} /> */}
+          {/* <Route path='/login' element={} /> */}
+          {/* <Route path='/register' element={} /> */}
+          {/* <Route path='/logout' element={} /> */}
+          {/* <Route path='/not-found' element={} /> */}
+          
         </Routes>
       </div>
     </>

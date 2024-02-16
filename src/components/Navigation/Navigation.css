@@ -4,13 +4,16 @@ header {
     justify-content: center;
     background-color: #9b16ab;
     width: 100%;
-    width: 100%;
 }
 
 nav.contentWrapper {
     height: auto;
     justify-content: space-between;
     flex-direction: row;
+}
+
+#links-mobile {
+    display: none;
 }
 
 nav #links {
@@ -22,7 +25,7 @@ nav #links {
 }
 
 #links a {
-    background-color: rgba(235,251,187, 0.8);
+    background-color: rgba(235, 251, 187, 0.8);
     border-radius: 0.5em;
     padding: 0.5em 1em;
     color: #9b16ab;
@@ -30,6 +33,46 @@ nav #links {
 }
 
 #links a:hover {
-    border: 1px solid rgba(235,251,187, 0.8);
-    background-color: rgb(235,251,187);
+    border: 1px solid rgba(235, 251, 187, 0.8);
+    background-color: rgb(235, 251, 187);
+}
+
+@media (max-width: 768px) {
+    nav{
+        width: 100%;
+    }
+    nav #links, div#logo {
+        display: none;
+    }
+
+    #links-mobile {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    svg {
+        fill: rgb(235, 251, 187);
+    }
+
+    .links-wrapper {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .links-wrapper a {
+        width: 100%;
+        padding: 0.5em 1em;
+        background-color: #9b16ab;
+        color: rgb(235, 251, 187);
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .links-wrapper a:hover {
+        border: 1px solid #9b16ab;
+    }
 }
