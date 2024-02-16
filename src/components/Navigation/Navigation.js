@@ -42,8 +42,6 @@ export function Navigation() {
                         <NavLink to='/logout'>Logout</NavLink>
                     </div>
                 </div>
-
-
             </nav>
         </header>
     );

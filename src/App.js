@@ -1,4 +1,5 @@
 import './App.css';
+import { Footer } from './components/Footer/Footer';
 import { Navigation } from './components/Navigation/Navigation';
 import { MemoryGame } from './components/games/Memory Game/MemoryGame'
 import { Routes, Route } from 'react-router-dom'
@@ -21,6 +22,7 @@ function App() {
           
         </Routes>
       </div>
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,28 @@
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #9b16ab;
+    width: 100%;
+
+    color: rgb(235, 251, 187);
+}
+
+footer .contentWrapper {
+    height: auto;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0;
+    margin: 0 0.5em;
+}
+
+footer .contacts {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+svg {
+    width: 2.5em;
+}
+

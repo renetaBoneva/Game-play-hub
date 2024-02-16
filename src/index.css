@@ -30,6 +30,11 @@ a {
   text-decoration: none;
 }
 
+
+svg {
+  fill: rgb(235, 251, 187);
+}
+
 @media (max-width: 425px) {
   .contentWrapper {
     padding: 0.5em;
