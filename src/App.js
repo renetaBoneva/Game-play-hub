@@ -1,13 +1,15 @@
 import './App.css';
-import { MemoryGame } from './components/Memory Game/MemoryGame';
-import { BubbleGame } from './components/Under the sea/BubbleGame';
+import { MemoryGame } from './components/games/Memory Game/MemoryGame'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <>
-      {/* <BubbleGame /> */}
-      <MemoryGame />
-    </>
+      <Routes>
+        {/* <BubbleGame /> */}
+        <Route path='/memoryGame' element={<MemoryGame />} />
+      </Routes>
+      </>
   );
 }
 
