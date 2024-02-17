@@ -7,9 +7,14 @@
 }
 
 /* Main */
-#root{
+body {
+  background-color: #720a7e;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#root {
   display: flex;
-  align-items: center;  
+  align-items: center;
   justify-content: center;
   flex-direction: column;
 }
@@ -26,13 +31,74 @@
   max-width: 1440px;
 }
 
+h2 {
+  font-size: 3em;
+}
+
 a {
   text-decoration: none;
 }
 
-
 svg {
-  fill: rgb(235, 251, 187);
+  fill: #ebfbbb;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em;
+  border-radius: 2em;
+  background-color: #ebfbbb;
+  color: #720a7e;
+  font-size: 1.2em;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  background-color: #e1d5e2;
+  /* background-color: #dec0e0; */
+  color: #ebfbbb;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  border: none;
+  border: 1px solid #720a7e;
+}
+
+form input:focus {
+  border: 3px solid #720a7e;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+form input[type="submit"] {
+  margin: 1em 30% 0 30%;
+  background-color: #720a7e;
+  color: rgb(235, 251, 187);
+  font-weight: bold;  
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  border: 1px solid #720a7e;
+}
+
+form input[type="submit"]:hover {
+  background-color: rgb(235, 251, 187);
+  color: #720a7e;
+}
+
+#notFoundParagraph {
+  font-size: 2.5em;
+  color: #ebfbbb;
+  margin-bottom: 1em;
 }
 
 @media (max-width: 425px) {
@@ -47,5 +113,5 @@ svg {
 }
 
 nav img {
-  max-width: 100px;
+  max-width: 4em;
 }

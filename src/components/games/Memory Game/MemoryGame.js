@@ -19,8 +19,16 @@ export function MemoryGame() {
     const [disabled, setDisabled] = useState(false);
     const [gameOver, setGameOver] = useState(false);
 
+    
     useEffect(() => {
         shuffleCards()
+        document.body.style.backgroundColor = '#e3a1eb';
+        document.body.style.color = '#377702';
+        
+        return () => {
+            document.body.style.backgroundColor = '#720a7e';
+            document.body.style.color = '#ebfbbb';
+        }
     }, []);
 
     function shuffleCards() {

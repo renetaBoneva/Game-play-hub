@@ -2,7 +2,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #9b16ab;
+    background-color: #720a7e;
     width: 100%;
 
     color: rgb(235, 251, 187);
@@ -13,7 +13,7 @@ footer .contentWrapper {
     justify-content: space-between;
     flex-direction: row;
     padding: 0;
-    margin: 0 0.5em;
+    margin: 0 1em;
 }
 
 footer .contacts {
@@ -26,3 +26,9 @@ svg {
     width: 2.5em;
 }
 
+@media (max-width: 768px) {
+    footer .contentWrapper {
+        margin: 0 0.5em;
+    }
+
+}
