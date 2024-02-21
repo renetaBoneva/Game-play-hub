@@ -13,14 +13,6 @@ export function Catalog() {
         }
     ];
 
-    useEffect(() => {
-        // document.body.style.backgroundColor = '#e3a1eb';
-        // document.body.style.color = '#377702';
-
-        return () => {
-        }
-    }, []);
-
     return (
         <div className="gameCoverWrapper">
             {games.map(game => {
