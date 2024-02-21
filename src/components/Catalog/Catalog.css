@@ -1,0 +1,42 @@
+.gameCoverWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 1em;
+}
+
+.gameCover {
+    flex: 1 0 1;
+    max-width: 30%;
+    overflow: hidden;
+    border-radius: 2em;
+    background-color: #fff;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    border: 3px solid #fff;
+}
+
+.gameCover:hover {
+    border: 3px solid #ebfbbb;
+    box-shadow: 0 0 1em #ebfbbb;
+}
+
+.gameCover img {
+    width: 100%;
+    border-radius: 2em;
+}
+
+@media (max-width: 768px) {
+    .gameCover {
+        flex: 1 0 1;
+        max-width: 40%;
+    }
+}
+
+@media (max-width: 425px) {
+    .gameCover {
+        flex: 1 0 1;
+        max-width: 80%;
+    }
+}

@@ -1,11 +1,13 @@
 import './App.css';
-import { Footer } from './components/Footer/Footer';
+import { Routes, Route } from 'react-router-dom'
+
 import { Navigation } from './components/Navigation/Navigation';
 import { MemoryGame } from './components/games/Memory Game/MemoryGame'
-import { Routes, Route } from 'react-router-dom'
 import { Login } from './components/user/Login/Login';
 import { Register } from './components/user/Register/Register';
 import { NotFound } from './components/NotFound/NotFound';
+import { Catalog } from './components/Catalog/Catalog';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
 
           {/* TODO: */}
           {/* <Route path='/underTheSea' element={<BubbleGame />} /> */}
-          {/* <Route path='/catalog' element={} /> */}
+          <Route path='/' element={<Catalog />} />
+          <Route path='/catalog' element={<Catalog />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           {/* <Route path='/logout' element={} /> */}
