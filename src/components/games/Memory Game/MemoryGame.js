@@ -42,6 +42,8 @@ export function MemoryGame() {
 
         setCards(allCards);
         setTurns(0);
+        setFirstCard(null);
+        setSecondCard(null);
     }
 
     function handleCardChoice(card) {
