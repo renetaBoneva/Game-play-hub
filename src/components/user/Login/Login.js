@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 
+import { useForm } from "../../hooks/useForm"
+
 export function Login() {
-    const [values, setValues] = useState({
+    const [values, changeValues, onSubmit] = useForm({
         email: "",
         password: ""
-    })
+    }, handleLoginSubmit)
 
     useEffect(() => {
         document.querySelector('div.contentWrapper').style.height = '70vh'
@@ -13,25 +15,19 @@ export function Login() {
         }
     }, [])
 
-    function handleChange(e) {
-        setValues(values => ({ ...values, [e.target.name]: e.target.value }));
-    }
-
-    function handleLoginSubmit(e) {
-        e.preventDefault();
-
-        console.log(values);
+    function handleLoginSubmit(data) {
+        console.log(data);
     }
 
     return (
-        <form method="POST" id="loginForm" onSubmit={handleLoginSubmit}>
+        <form method="POST" id="loginForm" onSubmit={onSubmit}>
             <div>
                 <label htmlFor="email" >Email</label>
                 <input
                     name='email'
                     type="email"
                     value={values.email}
-                    onChange={handleChange}
+                    onChange={changeValues}
                 />
             </div>
             <div>
@@ -40,7 +36,7 @@ export function Login() {
                     name="password"
                     type="password"
                     value={values.password}
-                    onChange={handleChange}
+                    onChange={changeValues}
                 />
             </div>
             <input type="submit" value='LOGIN' />

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 
+import { useForm } from "../../hooks/useForm"
+
 export function Register() {
-    const [values, setValues] = useState({
+    const [values, changeValues, onSubmit] = useForm({
         email: "",
         username: "",
         password: "",
         rePass: "",
-    })
+    }, handleRegisterSubmit)
 
     useEffect(() => {
         document.querySelector('div.contentWrapper').style.height = '70vh'
@@ -15,25 +17,19 @@ export function Register() {
         }
     }, [])
 
-    function handleChange(e) {
-        setValues(values => ({ ...values, [e.target.name]: e.target.value }));
-    }
-
-    function handleRegisterSubmit(e) {
-        e.preventDefault();
-
-        console.log(values);
+    function handleRegisterSubmit(data) {
+        console.log(data);
     }
 
     return (
-        <form method="POST" id="registerForm" onSubmit={handleRegisterSubmit}>
+        <form method="POST" id="registerForm" onSubmit={onSubmit}>
             <div> 
                 <label htmlFor="email" >Email</label>
                 <input
                     name='email'
                     type="email"
                     value={values.email}
-                    onChange={handleChange}
+                    onChange={changeValues}
 
                 />
             </div>
@@ -43,7 +39,7 @@ export function Register() {
                     name='username'
                     type="text"
                     value={values.username}
-                    onChange={handleChange}
+                    onChange={changeValues}
 
                 />
             </div>
@@ -53,7 +49,7 @@ export function Register() {
                     name="password"
                     type="password"
                     value={values.password}
-                    onChange={handleChange}
+                    onChange={changeValues}
 
                 />
             </div>
@@ -63,7 +59,7 @@ export function Register() {
                     name="rePass"
                     type="password"
                     value={values.rePass}
-                    onChange={handleChange}
+                    onChange={changeValues}
 
                 />
             </div>

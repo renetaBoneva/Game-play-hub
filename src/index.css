@@ -95,6 +95,13 @@ form input[type="submit"]:hover {
   color: #720a7e;
 }
 
+/* Navigation */
+nav img {
+  max-width: 4em;
+  border-radius: 0.5em;
+}
+
+/* Not found page */
 #notFoundParagraph {
   font-size: 2.5em;
   color: #ebfbbb;
@@ -110,8 +117,4 @@ form input[type="submit"]:hover {
   div.cards {
     max-height: 90vw;
   }
-}
-
-nav img {
-  max-width: 4em;
 }
