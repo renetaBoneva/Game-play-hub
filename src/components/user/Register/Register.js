@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
-import { useForm } from "../../hooks/useForm"
+import { useForm } from "../../../hooks/useForm";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
 export function Register() {
+    const { onRegisterHandler } = useAuthContext();
     const [values, changeValues, onSubmit] = useForm({
         email: "",
         username: "",
         password: "",
         rePass: "",
-    }, handleRegisterSubmit)
+    }, onRegisterHandler)
 
     useEffect(() => {
         document.querySelector('div.contentWrapper').style.height = '70vh'
@@ -17,13 +19,9 @@ export function Register() {
         }
     }, [])
 
-    function handleRegisterSubmit(data) {
-        console.log(data);
-    }
-
     return (
         <form method="POST" id="registerForm" onSubmit={onSubmit}>
-            <div> 
+            <div>
                 <label htmlFor="email" >Email</label>
                 <input
                     name='email'

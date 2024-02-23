@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
-import { useForm } from "../../hooks/useForm"
+import { useForm } from "../../../hooks/useForm";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
 export function Login() {
+    const { onLoginHandler } = useAuthContext();
     const [values, changeValues, onSubmit] = useForm({
         email: "",
         password: ""
-    }, handleLoginSubmit)
+    }, onLoginHandler)
 
     useEffect(() => {
         document.querySelector('div.contentWrapper').style.height = '70vh'
@@ -14,10 +16,6 @@ export function Login() {
             document.querySelector('div.contentWrapper').style.height = '100vh'
         }
     }, [])
-
-    function handleLoginSubmit(data) {
-        console.log(data);
-    }
 
     return (
         <form method="POST" id="loginForm" onSubmit={onSubmit}>
