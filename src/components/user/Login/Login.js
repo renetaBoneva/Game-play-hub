@@ -33,6 +33,7 @@ export function Login() {
                 <input
                     name="password"
                     type="password"
+                    suggested="current-password"
                     value={values.password}
                     onChange={changeValues}
                 />

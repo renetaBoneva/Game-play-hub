@@ -46,6 +46,7 @@ export function Register() {
                 <input
                     name="password"
                     type="password"
+                    suggested="current-password"
                     value={values.password}
                     onChange={changeValues}
 
@@ -56,6 +57,7 @@ export function Register() {
                 <input
                     name="rePass"
                     type="password"
+                    suggested="current-password"
                     value={values.rePass}
                     onChange={changeValues}
 
