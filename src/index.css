@@ -74,10 +74,14 @@ form input:focus {
   border: 3px solid #720a7e;
 }
 
-form div {
+form div.inputWrapper {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+}
+
+form .validationP {
+  
 }
 
 form input[type="submit"] {

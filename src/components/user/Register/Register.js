@@ -5,7 +5,7 @@ import { useAuthContext } from "../../../hooks/useAuthContext";
 
 export function Register() {
     const { onRegisterHandler } = useAuthContext();
-    const [values, changeValues, onSubmit] = useForm({
+    const { values, changeValues, onSubmit, validationMsg, handleIsValid, isDisabled } = useForm({
         email: "",
         username: "",
         password: "",
@@ -21,27 +21,29 @@ export function Register() {
 
     return (
         <form method="POST" id="registerForm" onSubmit={onSubmit}>
-            <div>
+            <div className="inputWrapper">
                 <label htmlFor="email" >Email</label>
                 <input
                     name='email'
                     type="email"
                     value={values.email}
                     onChange={changeValues}
-
+                    onBlur={handleIsValid}
                 />
+                {validationMsg.email && <p className="validationP">{validationMsg.email}</p> }
             </div>
-            <div>
+            <div className="inputWrapper">
                 <label htmlFor="username" >Username</label>
                 <input
                     name='username'
                     type="text"
                     value={values.username}
                     onChange={changeValues}
+                    onBlur={handleIsValid}
 
                 />
             </div>
-            <div>
+            <div className="inputWrapper">
                 <label htmlFor="password" >Password</label>
                 <input
                     name="password"
@@ -49,10 +51,11 @@ export function Register() {
                     suggested="current-password"
                     value={values.password}
                     onChange={changeValues}
+                    onBlur={handleIsValid}
 
                 />
             </div>
-            <div>
+            <div className="inputWrapper">
                 <label htmlFor="rePass" >Repeat password</label>
                 <input
                     name="rePass"
@@ -60,10 +63,11 @@ export function Register() {
                     suggested="current-password"
                     value={values.rePass}
                     onChange={changeValues}
+                    onBlur={handleIsValid}
 
                 />
             </div>
-            <input type="submit" value='Register' />
+            <input type="submit" value='Register' disabled={isDisabled} />
         </form>
     )
 }

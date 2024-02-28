@@ -13,6 +13,7 @@ export function AuthProvider({ children }) {
     async function onLoginHandler(loginData) {
         try {
             const user = await authService.login(loginData);
+            // TODO: check if users's levels are bigger than unauthorized
             setAuth(user)
             navigate('/catalog');
 
