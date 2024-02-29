@@ -30,7 +30,7 @@ export function Register() {
                     onChange={changeValues}
                     onBlur={handleIsValid}
                 />
-                {validationMsg.email && <p className="validationP">{validationMsg.email}</p> }
+                {validationMsg.email && <p className="validationP">{validationMsg.email}</p>}
             </div>
             <div className="inputWrapper">
                 <label htmlFor="username" >Username</label>
@@ -40,32 +40,32 @@ export function Register() {
                     value={values.username}
                     onChange={changeValues}
                     onBlur={handleIsValid}
-
                 />
+                {validationMsg.username && <p className="validationP">{validationMsg.username}</p>}
             </div>
             <div className="inputWrapper">
                 <label htmlFor="password" >Password</label>
                 <input
                     name="password"
                     type="password"
-                    suggested="current-password"
+                    suggested="new-password"
                     value={values.password}
                     onChange={changeValues}
                     onBlur={handleIsValid}
-
                 />
+                {validationMsg.password && <p className="validationP">{validationMsg.password}</p>}
             </div>
             <div className="inputWrapper">
                 <label htmlFor="rePass" >Repeat password</label>
                 <input
                     name="rePass"
                     type="password"
-                    suggested="current-password"
+                    suggested="new-password"
                     value={values.rePass}
                     onChange={changeValues}
                     onBlur={handleIsValid}
-
                 />
+                {validationMsg.rePass && <p className="validationP">{validationMsg.rePass}</p>}
             </div>
             <input type="submit" value='Register' disabled={isDisabled} />
         </form>
