@@ -11,8 +11,9 @@ export function AuthProvider({ children }) {
     const [guest, setGuest, removeGuest] = useLocalStorage('%guest%', {});
     const navigate = useNavigate();
 
-    async function onLoginHandler(loginData) {
+    async function onLoginHandler({ email, password }) {
         try {
+            const loginData = { email, password };
             const user = await authService.login(loginData);
             // TODO: check if users's levels are bigger than unauthorized
             setUser(user);
@@ -25,8 +26,9 @@ export function AuthProvider({ children }) {
 
     }
 
-    async function onRegisterHandler(registerData) {
+    async function onRegisterHandler({ email, username, password, rePass }) {
         try {
+            const registerData = { email, username, password, rePass };
             const user = await authService.register(registerData);
             setUser(user);
             removeGuest();
