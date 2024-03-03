@@ -18,5 +18,10 @@ export function useLocalStorage(key, initValues) {
         localStorage.setItem(key, JSON.stringify(data));
     }
 
-    return [localStorageData, setLocalStorage];
+    function removeLocalStorageItem() {
+        setLSData(initValues);
+        localStorage.removeItem(key);
+    }
+
+    return [localStorageData, setLocalStorage, removeLocalStorageItem];
 }

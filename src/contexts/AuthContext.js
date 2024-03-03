@@ -7,14 +7,16 @@ import * as authService from '../services/authService'
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-    const [auth, setAuth] = useLocalStorage('%auth%', {});
+    const [user, setUser, removeUser] = useLocalStorage('%user%', {});
+    const [guest, setGuest, removeGuest] = useLocalStorage('%guest%', {});
     const navigate = useNavigate();
 
     async function onLoginHandler(loginData) {
         try {
             const user = await authService.login(loginData);
             // TODO: check if users's levels are bigger than unauthorized
-            setAuth(user)
+            setUser(user);
+            removeGuest();
             navigate('/catalog');
 
         } catch (err) {
@@ -26,7 +28,8 @@ export function AuthProvider({ children }) {
     async function onRegisterHandler(registerData) {
         try {
             const user = await authService.register(registerData);
-            setAuth(user)
+            setUser(user);
+            removeGuest();
             navigate('/catalog');
 
         } catch (err) {
@@ -34,10 +37,22 @@ export function AuthProvider({ children }) {
         }
     }
 
+    async function onLogoutHandler() {
+        try {
+            await authService.logout();
+            setGuest({});
+            removeUser();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     const context = {
-        auth,
+        user,
         onLoginHandler,
         onRegisterHandler,
+        onLogoutHandler,
+        isAuthenticated: !!user.accessToken
     }
 
     return (
