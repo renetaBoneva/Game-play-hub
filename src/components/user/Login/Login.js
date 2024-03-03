@@ -19,7 +19,7 @@ export function Login() {
 
     return (
         <form method="POST" id="loginForm" onSubmit={onSubmit}>
-            <div>
+            <div className="inputWrapper">
                 <label htmlFor="email" >Email</label>
                 <input
                     name='email'
@@ -28,7 +28,7 @@ export function Login() {
                     onChange={changeValues}
                 />
             </div>
-            <div>
+            <div className="inputWrapper">
                 <label htmlFor="password" >Password</label>
                 <input
                     name="password"
