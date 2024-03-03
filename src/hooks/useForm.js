@@ -4,7 +4,7 @@ export function useForm(initValues, submitHandler) {
     const [values, setValues] = useState(initValues);
     const [validationMsg, setValidationMsg] = useState({});
     const [isInteracted, setIsInteracted] = useState(initValues);
-    const [isDisabled, setIsDisabled] = useState(false);
+    const [isDisabled, setIsDisabled] = useState(true);
 
     function changeValues(e) {
         setValues(state => ({ ...state, [e.target.name]: e.target.value }));
@@ -55,7 +55,10 @@ export function useForm(initValues, submitHandler) {
                 case 'password':
                     if (e.target.value.trim().length < 5) {
                         newErrors[e.target.name] = `Password should be at least 5 characters long!`;
-                    } else {
+                    } else if (values.rePass && values.rePass !== '' && e.target.value.trim() !== values.rePass) {
+                        newErrors[e.target.name] = `Password mismatch!`;
+                    }
+                    else {
                         delete newErrors[e.target.name];
                     }
                     break;
@@ -83,6 +86,7 @@ export function useForm(initValues, submitHandler) {
                 setIsDisabled(true);
             }
 
+            console.log(isDisabled);
             return validationMsg;
         })
 
