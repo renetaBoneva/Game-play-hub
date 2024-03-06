@@ -1,8 +1,10 @@
-import * as useAuthContext  from '../hooks/useAuthContext'
+import * as useAuthContext from '../hooks/useAuthContext'
 const serverAPI = 'https://server-game-play-hub.onrender.com';
 
 async function Req(method, url, data) {
-    const { user } = useAuthContext();
+    // TODO: Check REDUX
+    let user = localStorage.getItem('%user%');
+    user = user ? JSON.parse(user) : user;
     const accessToken = user?.accessToken;
     const options = {};
 
@@ -23,6 +25,7 @@ async function Req(method, url, data) {
 
     const res = await fetch(`${serverAPI}${url}`, options);
 
+    // TODO: Error handling
     const result = await res.json();
 
     return result;
