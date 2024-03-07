@@ -75,7 +75,9 @@ export function useForm(initValues, submitHandler) {
                     }
                     break;
                 case 'password':
-                    if (e.target.value.trim().length < 5) {
+                    if (e.target.value.trim().length === 0) {
+                        newErrors[e.target.name] = `Password is required!`;
+                    } else if (e.target.value.trim().length < 5) {
                         newErrors[e.target.name] = `Password should be at least 5 characters long!`;
                     } else if (values.rePass && values.rePass !== '' && e.target.value.trim() !== values.rePass) {
                         newErrors[e.target.name] = `Password mismatch!`;
