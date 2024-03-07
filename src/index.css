@@ -47,6 +47,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  margin: 1em;
   padding: 2em;
   border-radius: 2em;
   background-color: #ebfbbb;
@@ -63,7 +64,7 @@ form input[type="email"],
 form input[type="password"] {
   background-color: #e1d5e2;
   /* background-color: #dec0e0; */
-  color: #ebfbbb;
+  color: #720a7e;
   padding: 0.5em 1em;
   border-radius: 0.5em;
   border: none;

@@ -1,4 +1,4 @@
-const { useState } = require("react");
+const { useState, useEffect } = require("react");
 
 export function useForm(initValues, submitHandler) {
     const [values, setValues] = useState(initValues);
@@ -8,11 +8,24 @@ export function useForm(initValues, submitHandler) {
 
     function changeValues(e) {
         setValues(state => ({ ...state, [e.target.name]: e.target.value }));
-        setIsInteracted(state => {
-            return state[e.target.name]
-                ? state
-                : ({ ...state, [e.target.name]: true });
-        });
+        onInteractionHandler(e);
+
+        //Edge case validation when repeat password is the last form input
+        if (e.target.name === 'rePass') {
+            setValidationMsg(prevErrors => {
+                const newErrors = { ...prevErrors };
+
+                if (e.target.value === '') {
+                    newErrors[e.target.name] = `Repeat password is required!`;
+                } else if (e.target.value !== values.password) {
+                    newErrors[e.target.name] = `Password mismatch!`;
+                } else {
+                    delete newErrors[e.target.name];
+                }
+                return newErrors
+
+            })
+        }
     }
 
     function onSubmit(e) {
@@ -23,16 +36,25 @@ export function useForm(initValues, submitHandler) {
         }
     }
 
+    useEffect(() => {
+        // If there is uninteracted input, disable submit button
+        // If there is validation error, disable submit button
+        setIsDisabled(() => {
+            if (Object.keys(validationMsg).length === 0 && Object.values(isInteracted).every(x => x === true)) {
+                return false;
+            } else {
+                return true;
+            }
+        })
+    }, [isInteracted, validationMsg])
+
     function handleIsValid(e) {
         const tagName = e.target.name;
 
-        setIsInteracted(state => {
-            return state[e.target.name]
-                ? state
-                : ({ ...state, [e.target.name]: true });
-        });
+        onInteractionHandler(e);
 
-        setValidationMsg(newErrors => {
+        setValidationMsg(prevErrors => {
+            const newErrors = { ...prevErrors };
             switch (tagName) {
                 case "email":
                     const regexp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -77,29 +99,15 @@ export function useForm(initValues, submitHandler) {
 
             return newErrors;
         });
-
-        // If there is validation error, disable submit button
-        setValidationMsg(validationMsg => {
-            if (Object.keys(validationMsg).length === 0) {
-                setIsDisabled(false);
-            } else {
-                setIsDisabled(true);
-            }
-
-            console.log(isDisabled);
-            return validationMsg;
-        })
-
-        // If there is uninteracted input, disable submit button
-        setIsDisabled(() => {
-            if (Object.entries(isInteracted).every(x => x === true)) {
-                return false;
-            } else {
-                return true;
-            }
-        })
     }
 
+    function onInteractionHandler(e) {
+        setIsInteracted(state => {
+            return state[e.target.name]
+                ? state
+                : ({ ...state, [e.target.name]: true });
+        });
+    }
     return {
         values,
         changeValues,
