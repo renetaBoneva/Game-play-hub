@@ -5,7 +5,7 @@ import { useAuthContext } from "../../../hooks/useAuthContext";
 
 export function Login() {
     const { onLoginHandler } = useAuthContext();
-    const {values, changeValues, onSubmit} = useForm({
+    const { values, changeValues, onSubmit, validationMsg, handleIsValid, isDisabled } = useForm({
         email: "",
         password: ""
     }, onLoginHandler)
@@ -17,6 +17,11 @@ export function Login() {
         }
     }, [])
 
+    function handleChange(e) {
+        changeValues(e);
+        handleIsValid(e);
+    }
+
     return (
         <form method="POST" id="loginForm" onSubmit={onSubmit}>
             <div className="inputWrapper">
@@ -25,8 +30,10 @@ export function Login() {
                     name='email'
                     type="email"
                     value={values.email}
-                    onChange={changeValues}
+                    onChange={handleChange}
+                    onBlur={handleIsValid}
                 />
+                {validationMsg.email && <p className="validationP">{validationMsg.email}</p>}
             </div>
             <div className="inputWrapper">
                 <label htmlFor="password" >Password</label>
@@ -35,10 +42,12 @@ export function Login() {
                     type="password"
                     suggested="current-password"
                     value={values.password}
-                    onChange={changeValues}
+                    onChange={handleChange}
                 />
+                {validationMsg.password && <p className="validationP">{validationMsg.password}</p>}
             </div>
-            <input type="submit" value='LOGIN' />
+
+            <input type="submit" value='LOGIN' disabled={isDisabled} />
         </form>
     )
 }
