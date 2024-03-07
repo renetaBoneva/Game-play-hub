@@ -2,7 +2,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #720a7e;
     width: 100%;
 }
 
@@ -29,12 +28,12 @@ nav #links {
     border-radius: 0.5em;
     padding: 0.5em 1em;
     font-weight: bold;
-    color: #720a7e;
+    color: #4a0652;
 }
 
 #links a:hover {
     border: 1px solid rgb(235, 251, 187);
-    background-color: #720a7e;
+    background-color: #4a0652;
     color: rgb(235, 251, 187);
 }
 
@@ -63,13 +62,14 @@ nav #links {
     .links-wrapper a {
         width: 100%;
         padding: 0.5em 1em;
-        background-color: #720a7e;
+        background-color: #4a0652;
         color: rgb(235, 251, 187);
         font-weight: bold;
         text-align: center;
     }
     
     .links-wrapper a:hover {
-        border: 1px solid #720a7e;
+        border: 1px solid #4a0652;
     }
 }
+
