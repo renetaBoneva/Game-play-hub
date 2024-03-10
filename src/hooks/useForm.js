@@ -68,7 +68,9 @@ export function useForm(initValues, submitHandler) {
                     }
                     break;
                 case "username":
-                    if (e.target.value.trim().length < 3) {
+                    if (e.target.value.trim().length === 0) {
+                        newErrors[e.target.name] = `Username is required!`;
+                    } else if (e.target.value.trim().length < 3) {
                         newErrors[e.target.name] = `Username should be at least 3 characters long!`;
                     } else {
                         delete newErrors[e.target.name];
