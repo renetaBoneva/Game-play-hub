@@ -1,5 +1,3 @@
-import { useEffect } from "react"
-
 import { useForm } from "../../../hooks/useForm";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 
@@ -11,13 +9,6 @@ export function Register() {
         password: "",
         rePass: "",
     }, onRegisterHandler)
-
-    useEffect(() => {
-        document.querySelector('div.contentWrapper').style.height = '70vh'
-        return () => {
-            document.querySelector('div.contentWrapper').style.height = '100vh'
-        }
-    }, [])
 
     return (
         <form method="POST" id="registerForm" onSubmit={onSubmit}>

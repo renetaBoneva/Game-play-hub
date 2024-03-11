@@ -40,6 +40,10 @@ body {
   min-height: 100vh;
 }
 
+.userOrGuestWrapper {
+  min-height: 100vh;
+}
+
 h2 {
   font-size: 3em;
   text-align: center;

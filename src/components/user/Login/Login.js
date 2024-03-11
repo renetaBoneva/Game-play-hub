@@ -1,5 +1,3 @@
-import { useEffect } from "react"
-
 import { useForm } from "../../../hooks/useForm";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 
@@ -9,13 +7,6 @@ export function Login() {
         email: "",
         password: ""
     }, onLoginHandler)
-
-    useEffect(() => {
-        document.querySelector('div.contentWrapper').style.height = '70vh'
-        return () => {
-            document.querySelector('div.contentWrapper').style.height = '100vh'
-        }
-    }, [])
 
     function handleChange(e) {
         changeValues(e);
