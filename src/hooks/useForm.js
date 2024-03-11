@@ -57,7 +57,7 @@ export function useForm(initValues, submitHandler) {
             const newErrors = { ...prevErrors };
             switch (tagName) {
                 case "email":
-                    const regexp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+                    const regexp = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
                     if (e.target.value.trim().length === 0) {
                         newErrors[e.target.name] = `Email is required!`
