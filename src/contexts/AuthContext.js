@@ -67,7 +67,8 @@ export function AuthProvider({ children }) {
         onGuestRegistrationHandler,
         onRegisterHandler,
         onLogoutHandler,
-        isAuthenticated: !!user?.accessToken
+        isAuthenticated: !!user?.accessToken,
+        isUserOrGuest: !!user || !!guest
     }
 
     return (
