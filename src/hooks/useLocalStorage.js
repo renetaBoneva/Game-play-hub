@@ -9,8 +9,10 @@ export function useLocalStorage(key, initValues) {
             return parsedData;
         }
 
-        localStorage.setItem(key, JSON.stringify(initValues));
-        return initValues;
+        if (initValues) {
+            localStorage.setItem(key, JSON.stringify(initValues));
+        }
+        return undefined;
     });
 
     function setLocalStorage(data) {
@@ -19,7 +21,7 @@ export function useLocalStorage(key, initValues) {
     }
 
     function removeLocalStorageItem() {
-        setLSData(initValues);
+        setLSData(initValues || undefined);
         localStorage.removeItem(key);
     }
 
