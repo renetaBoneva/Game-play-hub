@@ -102,7 +102,7 @@ form input[type="submit"] {
 
 form input[type="submit"]:hover,
 form input:disabled {
-  background-color: rgb(235, 251, 187);
+  background-color: #ebfbbb;
   color: #4a0652;
 }
 
