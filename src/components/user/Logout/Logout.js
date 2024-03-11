@@ -7,7 +7,7 @@ export function Logout() {
 
     useEffect(() => {
        onLogoutHandler()
-    }, [])
+    })
 
     return <Loading />
 }

@@ -1,4 +1,3 @@
-import * as useAuthContext from '../hooks/useAuthContext'
 const serverAPI = 'https://server-game-play-hub.onrender.com';
 
 async function Req(method, url, data) {
@@ -18,7 +17,6 @@ async function Req(method, url, data) {
         }
     }
 
-    // TODO: check how to store data in local storage
     if (accessToken) {
         options.headers = { ...options.headers, 'X-Authorization': JSON.stringify(accessToken) }
     }
