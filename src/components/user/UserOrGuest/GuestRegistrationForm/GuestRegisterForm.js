@@ -1,15 +1,12 @@
+import { useAuthContext } from "../../../../hooks/useAuthContext";
 import { useForm } from "../../../../hooks/useForm";
 
 
 export function GuestRegistrationForm() {
+    const { onGuestRegistrationHandler } = useAuthContext();
     const { values, changeValues, onSubmit, validationMsg, handleIsValid, isDisabled } = useForm({
         username: "",
     }, onGuestRegistrationHandler)
-
-    console.log('TODO: Make onGuestRegistrationHandler()');
-    function onGuestRegistrationHandler(data) {
-        console.log(data);
-    }
 
     return (
         <form onSubmit={onSubmit} id="guestRegistrationForm">
