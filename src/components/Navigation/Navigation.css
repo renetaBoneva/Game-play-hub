@@ -62,14 +62,14 @@ nav #links {
     .links-wrapper a {
         width: 100%;
         padding: 0.5em 1em;
-        background-color: #4a0652;
         color: rgb(235, 251, 187);
         font-weight: bold;
         text-align: center;
     }
     
     .links-wrapper a:hover {
-        border: 1px solid #4a0652;
+        border: 3px solid #4a0652;
+        box-shadow: 0 0 1em #4a0652;
+        color: #c1ee39;
     }
 }
-

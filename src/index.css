@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
 /* Reset */
 * {
   margin: 0;
@@ -10,6 +12,10 @@
 body {
   background: radial-gradient(#9824a5, #4a0652);
   font-family: Arial, Helvetica, sans-serif;
+  /* Fonts */
+  font-family: "Madimi One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 #root {
@@ -26,13 +32,18 @@ body {
   flex-direction: column;
   gap: 1em;
   margin: 1em;
-  height: 100vh;
   width: 100%;
   max-width: 1440px;
 }
 
+.mainWrapper {
+  min-height: 100vh;
+}
+
 h2 {
   font-size: 3em;
+  text-align: center;
+  padding: 0 1em;
 }
 
 a {
@@ -46,6 +57,7 @@ svg {
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1em;
   margin: 1em;
   padding: 2em;
@@ -81,21 +93,18 @@ form div.inputWrapper {
   gap: 0.5em;
 }
 
-form .validationP {
-  
-}
-
 form input[type="submit"] {
   margin: 1em 30% 0 30%;
   background-color: #4a0652;
   color: rgb(235, 251, 187);
-  font-weight: bold;  
+  font-weight: bold;
   padding: 0.5em 1em;
   border-radius: 0.5em;
   border: 1px solid #4a0652;
 }
 
-form input[type="submit"]:hover, form input:disabled {
+form input[type="submit"]:hover,
+form input:disabled {
   background-color: rgb(235, 251, 187);
   color: #4a0652;
 }
@@ -104,6 +113,7 @@ form input[type="submit"]:hover, form input:disabled {
 nav img {
   max-width: 4em;
   border-radius: 0.5em;
+  margin-bottom: 2em;
 }
 
 /* Not found page */
@@ -119,7 +129,19 @@ nav img {
     height: 130vh;
   }
 
+  .mainWrapper {
+    min-height: auto;
+  }
+
+  .userOrGuestWrapper {
+    min-height: 200vh;
+  }
+
   div.cards {
     max-height: 90vw;
+  }
+
+  h2 {
+    font-size: 2em;
   }
 }
