@@ -19,7 +19,6 @@ export function Navigation() {
                     <NavLink to='/catalog' >
                         <img src="logo.jpg" alt='logo'></img>
                     </NavLink></div>
-                    <p>Hello, world!</p>
                 {isUserOrGuest &&
                     <>
                         <div id='links'>
