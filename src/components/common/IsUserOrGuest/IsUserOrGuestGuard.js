@@ -6,9 +6,11 @@ export function IsUserOrGuestGuard() {
 
     const guestLS = localStorage.getItem('%guest%');
     const userLS = localStorage.getItem('%user%');
+
+    console.log(!guestLS && !userLS);
     
     if(!guestLS && !userLS) {
-        <Navigate to={'/userOrGuest'}/>
+        return <Navigate to={'/userOrGuest'}/>
     }
 
     return (
