@@ -19,9 +19,10 @@ body {
 }
 
 #root {
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
 }
 
@@ -34,14 +35,6 @@ body {
   margin: 1em;
   width: 100%;
   max-width: 1440px;
-}
-
-.mainWrapper {
-  min-height: 100vh;
-}
-
-.userOrGuestWrapper {
-  min-height: 100vh;
 }
 
 h2 {
@@ -130,15 +123,6 @@ nav img {
 @media (max-width: 425px) {
   .contentWrapper {
     padding: 0.5em;
-    height: 130vh;
-  }
-
-  .mainWrapper {
-    min-height: auto;
-  }
-
-  .userOrGuestWrapper {
-    min-height: 200vh;
   }
 
   div.cards {

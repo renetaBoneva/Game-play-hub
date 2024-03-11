@@ -4,12 +4,12 @@ import { GuestRegistrationForm } from "./GuestRegistrationForm/GuestRegisterForm
 
 export function UserOrGuest() {
     return (
-        <div className='contentWrapper mainWrapper userOrGuestWrapper'>
-            <h2 className={styles.h2}>Continue as guest</h2>
-            <GuestRegistrationForm />
-            <hr className={styles.hr}></hr>
+        <div className='contentWrapper mainWrapper'>
             <h2 className={styles.h2}>Continue as gamer</h2>
             <Login />
+            <hr className={styles.hr}></hr>
+            <h2 className={styles.h2}>Continue as guest</h2>
+            <GuestRegistrationForm />
         </div>
     )
 }

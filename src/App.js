@@ -13,6 +13,7 @@ import { Footer } from './components/Footer/Footer';
 import { Logout } from './components/user/Logout/Logout';
 import { UserOrGuest } from './components/user/UserOrGuest/UserOrGuest';
 import { IsUserOrGuestGuard } from './components/common/IsUserOrGuest/IsUserOrGuestGuard';
+import { IsNotUserOrGuestGuard } from './components/common/IsNotUserOrGuestGuard/IsNotUserOrGuestGuard';
 
 function App() {
   return (
@@ -20,9 +21,11 @@ function App() {
       <AuthProvider>
         <Navigation />
         <Routes>
-            <Route path='/userOrGuest' element={<UserOrGuest />} />
-            
           <Route element={<IsUserOrGuestGuard />}>
+            <Route path='/userOrGuest' element={<UserOrGuest />} />
+          </Route>
+
+          <Route element={<IsNotUserOrGuestGuard />}>
             <Route path='/memoryGame' element={<MemoryGame />} />
             {/* TODO: */}
             {/* <Route path='/underTheSea' element={<BubbleGame />} /> */}
