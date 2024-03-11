@@ -7,17 +7,21 @@ import { Navigation } from './components/Navigation/Navigation';
 import { MemoryGame } from './components/games/Memory Game/MemoryGame'
 import { Login } from './components/user/Login/Login';
 import { Register } from './components/user/Register/Register';
-import { NotFound } from './components/NotFound/NotFound';
+import { NotFound } from './components/common/NotFound/NotFound';
 import { Catalog } from './components/Catalog/Catalog';
 import { Footer } from './components/Footer/Footer';
+import { Logout } from './components/user/Logout/Logout';
+import { UserOrGuest } from './components/user/UserOrGuest/UserOrGuest';
+import { IsUserOrGuestGuard } from './components/common/IsUserOrGuest/IsUserOrGuestGuard';
 
 function App() {
   return (
     <>
       <AuthProvider>
         <Navigation />
-        <div className='contentWrapper'>
-          <Routes>
+        <Routes>
+          <Route element={<IsUserOrGuestGuard />}>
+            <Route path='/userOrGuest' element={<UserOrGuest />} />
             <Route path='/memoryGame' element={<MemoryGame />} />
 
             {/* TODO: */}
@@ -26,13 +30,14 @@ function App() {
             <Route path='/catalog' element={<Catalog />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            {/* <Route path='/logout' element={} /> */}
+            <Route path='/logout' element={<Logout />} />
             <Route path='*' element={<NotFound />} />
 
-          </Routes>
-        </div>
+          </Route>
+
+        </Routes>
+        <Footer />
       </AuthProvider>
-      <Footer />
     </>
   );
 }
