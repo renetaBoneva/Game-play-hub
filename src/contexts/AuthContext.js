@@ -54,8 +54,8 @@ export function AuthProvider({ children }) {
     async function onLogoutHandler() {
         try {
             await authService.logout();
-            setGuest({});
             removeUser();
+            navigate('/userOrGuest');
         } catch (err) {
             console.log(err);
         }
