@@ -1,4 +1,4 @@
-import { createContext, useEffect } from "react";
+import { createContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 
@@ -34,6 +34,7 @@ export function AuthProvider({ children }) {
             removeUser();
             setGuest({ username });
         }
+        navigate('/catalog')
     }
 
     async function onRegisterHandler({ email, username, password, rePass }) {
