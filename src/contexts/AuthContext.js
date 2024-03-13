@@ -15,7 +15,7 @@ export function AuthProvider({ children }) {
         try {
             const loginData = { email, password };
             const user = await authService.login(loginData);
-
+            
             // TODO: check if users's levels are bigger than unauthorized
             setUser(user);
             removeGuest();

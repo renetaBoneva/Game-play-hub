@@ -1,27 +1,21 @@
-import { Outlet, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 import { useAuthContext } from "../../../hooks/useAuthContext";
 
 export function IsNotUserOrGuestGuard() {
     const { user, guest } = useAuthContext();
-    const [isUserOrGuest, setIsUserOrGuest] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!guest && !user) {
-            setIsUserOrGuest(false);
-        } else {
-            setIsUserOrGuest(true);
+            navigate('/userOrGuest')
         }
     }, [user, guest])
 
-    if (isUserOrGuest) {
-        return (
-            <div className='contentWrapper mainWrapper'>
-                <Outlet />
-            </div>
-        )
-    } else {
-        return <Navigate to={'/userOrGuest'} />
-    }
+    return (
+        <div className='contentWrapper mainWrapper'>
+            <Outlet />
+        </div>
+    )
 }
