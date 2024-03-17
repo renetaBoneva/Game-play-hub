@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import * as authService from '../services/authService'
 import { toast } from "react-toastify";
+import { stopLoading } from "../redux/loader/loader-slice";
+import { useDispatch } from "react-redux";
 
 export const AuthContext = createContext();
 
@@ -11,21 +13,22 @@ export function AuthProvider({ children }) {
     const [user, setUser, removeUser] = useLocalStorage('%user%');
     const [guest, setGuest, removeGuest] = useLocalStorage('%guest%');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     async function onLoginHandler({ email, password }) {
         try {
             const loginData = { email, password };
             const user = await authService.login(loginData);
-            
+
             // TODO: check if users's levels are bigger than unauthorized
             setUser(user);
             removeGuest();
             navigate('/catalog');
-
+            dispatch(stopLoading());
         } catch (err) {
+            dispatch(stopLoading());
             return toast.error('Incorrect email or password!');
         }
-
     }
 
     function onGuestRegistrationHandler({ username }) {
@@ -79,3 +82,14 @@ export function AuthProvider({ children }) {
         </AuthContext.Provider>);
 
 }
+
+// async function Model(actionHandler){
+//     const dispatch = useDispatch();
+//     try {
+//         actionHandler();
+//     dispatch(stopLoading());
+//     } catch (err) {
+//     dispatch(stopLoading());
+//         return toast.error('Unauthorized!');
+//     }
+// }

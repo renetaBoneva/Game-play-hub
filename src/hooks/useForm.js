@@ -1,3 +1,6 @@
+import { useDispatch } from "react-redux";
+import { startLoading } from "../redux/loader/loader-slice";
+
 const { useState, useEffect } = require("react");
 
 export function useForm(initValues, submitHandler) {
@@ -5,6 +8,7 @@ export function useForm(initValues, submitHandler) {
     const [validationMsg, setValidationMsg] = useState({});
     const [isInteracted, setIsInteracted] = useState(initValues);
     const [isDisabled, setIsDisabled] = useState(true);
+    const dispatch = useDispatch();
 
     function changeValues(e) {
         setValues(state => ({ ...state, [e.target.name]: e.target.value }));
@@ -31,6 +35,7 @@ export function useForm(initValues, submitHandler) {
     function onSubmit(e) {
         e.preventDefault();
         if (!isDisabled) {
+            dispatch(startLoading());
             submitHandler(values);
             setValues(initValues);
         }

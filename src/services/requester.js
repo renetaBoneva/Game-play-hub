@@ -25,8 +25,7 @@ async function Req(method, url, data) {
     if (!res.ok) {
         throw res;
     }
-
-    // TODO: Error handling
+    
     const result = await res.json();
 
     return result;
