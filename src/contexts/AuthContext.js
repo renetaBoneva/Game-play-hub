@@ -3,6 +3,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 
 import * as authService from '../services/authService'
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
@@ -22,7 +23,7 @@ export function AuthProvider({ children }) {
             navigate('/catalog');
 
         } catch (err) {
-            console.log(err);
+            return toast.error('Incorrect email or password!');
         }
 
     }
@@ -47,7 +48,7 @@ export function AuthProvider({ children }) {
             navigate('/catalog');
 
         } catch (err) {
-            console.log(err);
+            return toast.error('Incorrect information!');
         }
     }
 
@@ -57,7 +58,7 @@ export function AuthProvider({ children }) {
             removeUser();
             navigate('/userOrGuest');
         } catch (err) {
-            console.log(err);
+            return toast.error('Unauthorized!');
         }
     }
 
