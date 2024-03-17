@@ -39,6 +39,7 @@ export function AuthProvider({ children }) {
             setGuest({ username });
         }
         navigate('/catalog')
+        dispatch(stopLoading());
     }
 
     async function onRegisterHandler({ email, username, password, rePass }) {
@@ -49,21 +50,26 @@ export function AuthProvider({ children }) {
             setUser(user);
             removeGuest();
             navigate('/catalog');
-
+            dispatch(stopLoading());
         } catch (err) {
+            dispatch(stopLoading());
             return toast.error('Incorrect information!');
         }
     }
 
     async function onLogoutHandler() {
         try {
-            await authService.logout();
+            // await authService.logout();
             removeUser();
             navigate('/userOrGuest');
+            dispatch(stopLoading());
         } catch (err) {
+            dispatch(stopLoading());
             return toast.error('Unauthorized!');
         }
     }
+
+    
 
     const context = {
         user,
@@ -82,14 +88,3 @@ export function AuthProvider({ children }) {
         </AuthContext.Provider>);
 
 }
-
-// async function Model(actionHandler){
-//     const dispatch = useDispatch();
-//     try {
-//         actionHandler();
-//     dispatch(stopLoading());
-//     } catch (err) {
-//     dispatch(stopLoading());
-//         return toast.error('Unauthorized!');
-//     }
-// }
