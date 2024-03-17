@@ -24,9 +24,10 @@ function App() {
 
   return (
     <>
-      <AuthProvider>
-        <ToastContainer />
+      <AuthProvider>        
+        <ToastContainer />{/* Notification component */}
         <Navigation />
+
         {isLoading
           ? <Loading />
           : (
@@ -49,6 +50,7 @@ function App() {
 
             </Routes>
           )}
+          
         <Footer />
       </AuthProvider>
     </>
