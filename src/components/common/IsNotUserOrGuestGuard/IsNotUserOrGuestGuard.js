@@ -11,7 +11,7 @@ export function IsNotUserOrGuestGuard() {
         if (!guest && !user) {
             navigate('/userOrGuest')
         }
-    }, [user, guest])
+    }, [user, guest, navigate])
 
     return (
         <div className='contentWrapper mainWrapper'>
