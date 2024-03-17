@@ -16,7 +16,7 @@ export function Navigation() {
         <header>
             <nav className={isOpen ? '' : 'contentWrapper'}>
                 <div id='logo'>
-                    <NavLink to='/catalog' >
+                    <NavLink to='/catalog'>
                         <img src="logo.jpg" alt='logo'></img>
                     </NavLink></div>
                 {isUserOrGuest &&
@@ -42,15 +42,15 @@ export function Navigation() {
                             </svg>
                             <div className='links-wrapper' style={isOpen ? { display: "flex" } : { display: "none" }}>
                                 {/* For everyone */}
-                                <NavLink to='/catalog'>Catalog</NavLink>
+                                <NavLink to='/catalog' onClick={handleMobileMenu}>Catalog</NavLink>
                                 {!isAuthenticated && <>
-                                    <NavLink to='/login'>Login</NavLink>
-                                    <NavLink to='/register'>Register</NavLink>
+                                    <NavLink to='/login' onClick={handleMobileMenu}>Login</NavLink>
+                                    <NavLink to='/register' onClick={handleMobileMenu}>Register</NavLink>
                                 </>}
                                 {isAuthenticated && <>
                                     {/* For authenticated */}
-                                    <NavLink to='/profile'>Profile</NavLink>
-                                    <NavLink to='/logout'>Logout</NavLink>
+                                    <NavLink to='/profile' onClick={handleMobileMenu}>Profile</NavLink>
+                                    <NavLink to='/logout' onClick={handleMobileMenu}>Logout</NavLink>
                                 </>}
                             </div>
                         </div>
