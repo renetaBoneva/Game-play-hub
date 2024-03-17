@@ -16,31 +16,39 @@ import { Logout } from './components/user/Logout/Logout';
 import { UserOrGuest } from './components/user/UserOrGuest/UserOrGuest';
 import { IsUserOrGuestGuard } from './components/common/IsUserOrGuest/IsUserOrGuestGuard';
 import { IsNotUserOrGuestGuard } from './components/common/IsNotUserOrGuestGuard/IsNotUserOrGuestGuard';
+import { useSelector } from 'react-redux';
+import { Loading } from './components/common/Loading/Loading';
 
 function App() {
+  const isLoading = useSelector(state => state.isLoading);
+
   return (
     <>
       <AuthProvider>
-        <ToastContainer  />
+        <ToastContainer />
         <Navigation />
-        <Routes>
-          <Route element={<IsUserOrGuestGuard />}>
-            <Route path='/userOrGuest' element={<UserOrGuest />} />
-          </Route>
+        {isLoading
+          ? <Loading />
+          : (
+            <Routes>
+              <Route element={<IsUserOrGuestGuard />}>
+                <Route path='/userOrGuest' element={<UserOrGuest />} />
+              </Route>
 
-          <Route element={<IsNotUserOrGuestGuard />}>
-            <Route path='/memoryGame' element={<MemoryGame />} />
-            {/* TODO: */}
-            {/* <Route path='/underTheSea' element={<BubbleGame />} /> */}
-            <Route path='/' element={<Catalog />} />
-            <Route path='/catalog' element={<Catalog />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/logout' element={<Logout />} />
-            <Route path='*' element={<NotFound />} />
-          </Route>
+              <Route element={<IsNotUserOrGuestGuard />}>
+                <Route path='/memoryGame' element={<MemoryGame />} />
+                {/* TODO: */}
+                {/* <Route path='/underTheSea' element={<BubbleGame />} /> */}
+                <Route path='/' element={<Catalog />} />
+                <Route path='/catalog' element={<Catalog />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+                <Route path='/logout' element={<Logout />} />
+                <Route path='*' element={<NotFound />} />
+              </Route>
 
-        </Routes>
+            </Routes>
+          )}
         <Footer />
       </AuthProvider>
     </>
