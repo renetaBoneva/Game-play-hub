@@ -36,7 +36,13 @@ export function useForm(initValues, submitHandler) {
         e.preventDefault();
         if (!isDisabled) {
             dispatch(startLoading());
-            submitHandler(values);
+
+            //trim values before submit
+            const valuesToSubmit = {};
+            const valuesKeys = Object.keys(values);
+            valuesKeys.forEach(key => valuesToSubmit[key] = values[key].trim());
+            submitHandler(valuesToSubmit);
+
             setValues(initValues);
         }
     }
@@ -77,6 +83,8 @@ export function useForm(initValues, submitHandler) {
                         newErrors[e.target.name] = `Username is required!`;
                     } else if (e.target.value.trim().length < 3) {
                         newErrors[e.target.name] = `Username should be at least 3 characters long!`;
+                    } else if (e.target.value.trim().length > 30) {
+                        newErrors[e.target.name] = `Username should be less than 30 characters!`;
                     } else {
                         delete newErrors[e.target.name];
                     }
@@ -88,8 +96,9 @@ export function useForm(initValues, submitHandler) {
                         newErrors[e.target.name] = `Password should be at least 5 characters long!`;
                     } else if (values.rePass && values.rePass !== '' && e.target.value.trim() !== values.rePass) {
                         newErrors[e.target.name] = `Password mismatch!`;
-                    }
-                    else {
+                    } else if (e.target.value.trim().length > 30) {
+                        newErrors[e.target.name] = `Password should be less than 30 characters!`;
+                    } else {
                         delete newErrors[e.target.name];
                     }
                     break;
