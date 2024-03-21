@@ -125,6 +125,10 @@ nav img {
     padding: 0.5em;
   }
 
+  form {
+    padding: 1.5em 1em;
+  }
+
   div.cards {
     max-height: 90vw;
   }
