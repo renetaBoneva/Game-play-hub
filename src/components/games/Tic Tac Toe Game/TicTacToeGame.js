@@ -17,62 +17,62 @@ export function TicTacToeGame() {
             console.log(currentPlayer);
             makeAIMove()
         }
+
+        async function makeAIMove() {
+            setIsWaitingForResponse(true);
+            try {
+                const aiResponse = await ticTacToeGameService.aiResponse(board);
+
+                console.log(aiResponse);
+            } catch (err) {
+                console.log(err);
+            }
+        }
     }, [currentPlayer, gameStatus]);
 
     useEffect(() => {
         checkGameStatus();
+
+        function checkGameStatus() {
+            for (let i = 0; i < 3; i++) {
+                // if there is a row match
+                if (board[i][0] === board[i][1]
+                    && board[i][2] === board[i][1]
+                    && board[i][0] !== '') {
+                    setGameStatus(`${board[1][1]} wins!`);
+                    return;
+                }
+
+                // if there is a column match
+                if (board[0][i] === board[1][i]
+                    && board[2][i] === board[1][i]
+                    && board[0][i] !== '') {
+                    setGameStatus(`${board[1][1]} wins!`);
+                    return;
+                }
+
+            }
+
+            // first diagonal
+            if (board[0][0] === board[1][1]
+                && board[2][2] === board[1][1]
+                && board[0][0] !== ''
+            ) {
+                setGameStatus(`${board[1][1]} wins!`);
+                return;
+            }
+
+            //second diagonal
+            if (board[0][2] === board[1][1]
+                && board[2][0] === board[1][1]
+                && board[0][2] !== ''
+            ) {
+                setGameStatus(`${board[1][3]} wins!`);
+                return;
+            }
+        }
     }, [board]);
 
-    function checkGameStatus() {
-        for (let i = 0; i < 3; i++) {
-            // if there is a row match
-            if (board[i][0] === board[i][1]
-                && board[i][2] === board[i][1]
-                && board[i][0] !== '') {
-                setGameStatus(`${board[1][1]} wins!`);
-                return;
-            }
-
-            // if there is a column match
-            if (board[0][i] === board[1][i]
-                && board[2][i] === board[1][i]
-                && board[0][i] !== '') {
-                setGameStatus(`${board[1][1]} wins!`);
-                return;
-            }
-
-        }
-
-        // first diagonal
-        if (board[0][0] === board[1][1]
-            && board[2][2] === board[1][1]
-            && board[0][0] !== ''
-        ) {
-            setGameStatus(`${board[1][1]} wins!`);
-            return;
-        }
-
-        //second diagonal
-        if (board[0][2] === board[1][1]
-            && board[2][0] === board[1][1]
-            && board[0][2] !== ''
-        ) {
-            setGameStatus(`${board[1][3]} wins!`);
-            return;
-        }
-    }
-
-    async function makeAIMove() {
-
-        setIsWaitingForResponse(true);
-        try {
-            const aiResponse = await ticTacToeGameService.aiResponse(board)
-        
-            console.log(aiResponse);
-        } catch(err) {
-            console.log(err);
-        }
-    }
 
     function handleButtonFieldClick(row, col) {
         if (board[row][col] === ''
