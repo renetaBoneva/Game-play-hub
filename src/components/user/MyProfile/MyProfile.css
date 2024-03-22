@@ -1,0 +1,32 @@
+.myProfileWrapper,
+.myProfileInfoWrapper,
+.infoWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myProfileWrapper {
+    justify-content: center;
+    gap: 1em;
+    padding: 1.5em 2em;
+    border-radius: 1em;
+    color: #4a0652;
+    background-color: #ebfbbb;
+}
+
+.myProfileWrapper h2 {
+    color: #4a0652;
+}
+
+.myProfileInfoWrapper {
+    gap: 1em;
+}
+
+.myProfileInfoWrapper p.infoLabel {
+    font-size: 1.2em;
+}
+
+.myProfileInfoWrapper p.infoP {
+    font-size: 1.4em;
+}

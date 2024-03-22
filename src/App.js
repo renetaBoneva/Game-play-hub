@@ -19,6 +19,7 @@ import { IsNotUserOrGuestGuard } from './components/common/IsNotUserOrGuestGuard
 import { useSelector } from 'react-redux';
 import { Loading } from './components/common/Loading/Loading';
 import { TicTacToeGame } from './components/games/Tic Tac Toe Game/TicTacToeGame';
+import { MyProfile } from './components/user/MyProfile/MyProfile';
 
 function App() {
   const isLoading = useSelector(state => state.isLoading);
@@ -38,14 +39,15 @@ function App() {
               </Route>
 
               <Route element={<IsNotUserOrGuestGuard />}>
+                <Route path='/' element={<Catalog />} />
+                {/* games */}
                 <Route path='/memoryGame' element={<MemoryGame />} />
                 <Route path='/ticTacToeGame' element={<TicTacToeGame />} />
-                {/* TODO: */}
-                {/* <Route path='/underTheSea' element={<BubbleGame />} /> */}
-                <Route path='/' element={<Catalog />} />
+                {/* user logic */}
                 <Route path='/catalog' element={<Catalog />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
+                <Route path='/profile' element={<MyProfile />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='*' element={<NotFound />} />
               </Route>
