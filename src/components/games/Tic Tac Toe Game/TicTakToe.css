@@ -1,0 +1,38 @@
+div.ticTacToeWrapper {
+    color: #ebfbbb;
+}
+
+div.ticTacToeBoard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    max-height: 70vh;
+    aspect-ratio: 1/1;
+    gap: 1em;
+}
+
+div.boardRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 30%;
+    width: 100%;
+    gap: 1em;
+}
+
+button.boardButtonField {
+    border: 3px solid #fff;
+    aspect-ratio: 1/1;
+    border-radius: 0.3em;
+    background-color: #ebfbbb;
+    color: #4a0652;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+button.boardButtonField:hover {
+    background-color: #afdf88;
+    box-shadow: 0px 0px 10px #c4eb93;
+    cursor: pointer;
+}

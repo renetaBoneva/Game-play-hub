@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { Fragment, useEffect, useState } from 'react';
-import styles from './TicTakToe.module.css'
+import './TicTakToe.css'
 import * as ticTacToeGameService from '../../../services/ticTacToeService'
 
 export function TicTacToeGame() {
     const [board, setBoard] = useState([
-        ['', '', ''],
-        ['', '', ''],
-        ['', '', ''],
+        ['1', '2', '3'],
+        ['4', '5', '6'],
+        ['7', '8', '9'],
     ]);
     const [currentPlayer, setCurrentPlayer] = useState('X');
     const [gameStatus, setGameStatus] = useState('ongoing');
@@ -72,8 +72,8 @@ export function TicTacToeGame() {
         } catch (err) {
             console.log(err);
         }
-        
-        // setIsWaitingForResponse(false);
+
+        setIsWaitingForResponse(false);
     }
 
     function handleButtonFieldClick(row, col) {
@@ -101,10 +101,9 @@ export function TicTacToeGame() {
     }
 
     return (
-        <div className='gameWrapper'>
-            <h2 style={styles.h2}>Tic Tac Toe</h2>
+        <div className='gameWrapper ticTacToeWrapper'>
+            <h2>Tic Tac Toe</h2>
             <p>Current player: {currentPlayer}</p>
-            <p>Game status: {gameStatus}</p>
             <div className='ticTacToeBoard'>
                 {board.map((row, i) => {
                     return (
@@ -114,6 +113,7 @@ export function TicTacToeGame() {
                     );
                 })}
             </div>
+            <p>Game status: {gameStatus}</p>
         </div>
     );
 }
