@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { Fragment, useEffect, useState } from 'react';
 import styles from './TicTakToe.module.css'
 import * as ticTacToeGameService from '../../../services/ticTacToeService'
@@ -14,19 +16,7 @@ export function TicTacToeGame() {
 
     useEffect(() => {
         if (currentPlayer === 'O' && gameStatus === 'ongoing') {
-            console.log(currentPlayer);
             makeAIMove()
-        }
-
-        async function makeAIMove() {
-            setIsWaitingForResponse(true);
-            try {
-                const aiResponse = await ticTacToeGameService.aiResponse(board);
-
-                console.log(aiResponse);
-            } catch (err) {
-                console.log(err);
-            }
         }
     }, [currentPlayer, gameStatus]);
 
@@ -73,6 +63,18 @@ export function TicTacToeGame() {
         }
     }, [board]);
 
+    async function makeAIMove() {
+        setIsWaitingForResponse(true);
+        try {
+            const aiResponse = await ticTacToeGameService.aiResponse(board)
+
+            console.log(aiResponse);
+        } catch (err) {
+            console.log(err);
+        }
+        
+        // setIsWaitingForResponse(false);
+    }
 
     function handleButtonFieldClick(row, col) {
         if (board[row][col] === ''
