@@ -66,7 +66,7 @@ export function TicTacToeGame() {
     async function makeAIMove() {
         setIsWaitingForResponse(true);
         try {
-            const aiResponse = await ticTacToeGameService.aiResponse(board)
+            const aiResponse = await ticTacToeGameService.aiResponse(board);
 
             console.log(aiResponse);
         } catch (err) {
