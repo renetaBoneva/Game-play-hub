@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 
 import { getUserById } from "../../../services/authService";
 import './MyProfile.css'
 
 export function MyProfile() {
-    const [userInfo, setUserInfo] = useState({});
+    // const [userInfo, setUserInfo] = useState({});
     const { user } = useAuthContext();
     const _userID = user._userID;
 
