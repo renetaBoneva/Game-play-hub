@@ -18,6 +18,7 @@ import { IsUserOrGuestGuard } from './components/common/IsUserOrGuest/IsUserOrGu
 import { IsNotUserOrGuestGuard } from './components/common/IsNotUserOrGuestGuard/IsNotUserOrGuestGuard';
 import { useSelector } from 'react-redux';
 import { Loading } from './components/common/Loading/Loading';
+import { TicTacToeGame } from './components/games/Tic Tac Toe Game/TicTacToeGame';
 
 function App() {
   const isLoading = useSelector(state => state.isLoading);
@@ -38,6 +39,7 @@ function App() {
 
               <Route element={<IsNotUserOrGuestGuard />}>
                 <Route path='/memoryGame' element={<MemoryGame />} />
+                <Route path='/ticTacToeGame' element={<TicTacToeGame />} />
                 {/* TODO: */}
                 {/* <Route path='/underTheSea' element={<BubbleGame />} /> */}
                 <Route path='/' element={<Catalog />} />

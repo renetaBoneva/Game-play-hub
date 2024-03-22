@@ -51,6 +51,16 @@ svg {
   fill: #ebfbbb;
 }
 
+/* Game wrapper */
+div.gameWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 1em;
+}
+
+/* Form css */
 form {
   display: flex;
   flex-direction: column;
@@ -72,7 +82,6 @@ form input[type="text"],
 form input[type="email"],
 form input[type="password"] {
   background-color: #e1d5e2;
-  /* background-color: #dec0e0; */
   color: #4a0652;
   padding: 0.5em 1em;
   border-radius: 0.5em;
