@@ -78,7 +78,7 @@ export function MemoryGame() {
         setDisabled(false)
     }
 
-    return (<div className='gameWrapper'>
+    return (<div className='gameWrapper memoryGameWrapper'>
         <h2>Memory Game</h2>
         {gameOver
             ? (<h3>Congrats! You made it with {turns} turns!</h3>)

@@ -1,12 +1,9 @@
-div.gameWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    gap: 1em;
+div.memoryGameWrapper h2 {
+    color: #377702;
 }
 
-div.gameWrapper button {
+
+div.memoryGameWrapper button {
     padding: 0.5em 1em;
     border-radius: 0.5em;
     background-color: #377702;
@@ -15,7 +12,7 @@ div.gameWrapper button {
     box-shadow: 1px 1px 10px #377702;
 }
 
-div.gameWrapper button:hover {
+div.memoryGameWrapper button:hover {
     box-shadow: 0px 0px 10px #fff;
 }
 
