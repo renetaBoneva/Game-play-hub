@@ -1,7 +1,7 @@
 // const serverAPI = 'https://server-game-play-hub.onrender.com';
-// const serverAPI = 'http://localhost:3333';
+const serverAPI = 'http://localhost:3333';
 
-import { serverAPI } from "../constants";
+// import { serverAPI } from "../constants";
 
 async function Req(method, url, data) {
     let user = localStorage.getItem('%user%');
@@ -20,7 +20,7 @@ async function Req(method, url, data) {
     }
 
     if (accessToken) {
-        options.headers = { ...options.headers, 'X-Authorization': JSON.stringify(accessToken) }
+        options.headers = { ...options.headers, 'X-Authorization': accessToken }
     }
 
     const res = await fetch(`${serverAPI}${url}`, options);
