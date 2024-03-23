@@ -73,6 +73,7 @@ export function AuthProvider({ children }) {
 
     const context = {
         user,
+        _userID: user?._userID,
         guest,
         onLoginHandler,
         onGuestRegistrationHandler,
