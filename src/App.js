@@ -20,6 +20,7 @@ import { useSelector } from 'react-redux';
 import { Loading } from './components/common/Loading/Loading';
 import { TicTacToeGame } from './components/games/Tic Tac Toe Game/TicTacToeGame';
 import { MyProfile } from './components/user/MyProfile/MyProfile';
+import { IsAuthenticated } from './components/common/IsAuthenticated/IsAuthenticated';
 
 function App() {
   const isLoading = useSelector(state => state.isLoading);
@@ -43,12 +44,17 @@ function App() {
                 {/* games */}
                 <Route path='/memoryGame' element={<MemoryGame />} />
                 <Route path='/ticTacToeGame' element={<TicTacToeGame />} />
+
                 {/* user logic */}
                 <Route path='/catalog' element={<Catalog />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
-                <Route path='/profile' element={<MyProfile />} />
-                <Route path='/logout' element={<Logout />} />
+                <Route path='/register' element={<Register />} />                
+                <Route element={<IsAuthenticated />}>
+                    {/* for authenticated users */}
+                  <Route path='/profile' element={<MyProfile />} />
+                  <Route path='/logout' element={<Logout />} />
+                </Route>
+
                 <Route path='*' element={<NotFound />} />
               </Route>
 
