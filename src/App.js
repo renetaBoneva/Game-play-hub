@@ -41,12 +41,13 @@ function App() {
 
               <Route element={<IsNotUserOrGuestGuard />}>
                 <Route path='/' element={<Catalog />} />
+                <Route path='/catalog' element={<Catalog />} />
+                
                 {/* games */}
                 <Route path='/memoryGame' element={<MemoryGame />} />
                 <Route path='/ticTacToeGame' element={<TicTacToeGame />} />
 
                 {/* user logic */}
-                <Route path='/catalog' element={<Catalog />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />                
                 <Route element={<IsAuthenticated />}>
