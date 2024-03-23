@@ -21,7 +21,8 @@ div.boardRow {
     gap: 1em;
 }
 
-button.boardButtonField {
+button.boardButtonField,
+button.opponentButton {
     border: 3px solid #fff;
     aspect-ratio: 1/1;
     border-radius: 0.3em;
@@ -31,8 +32,56 @@ button.boardButtonField {
     font-weight: bold;
 }
 
-button.boardButtonField:hover {
+/* Choose game opponent section */
+.chooseOpponentWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+button.opponentButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+
+    width: 50%;
+    font-size: 1.5em;
+    padding: 0.5em;
+}
+
+button.opponentButton svg {
+    font-size: 2em;
+    color: #75c253;
+}
+
+.opponentButton:hover svg.ticTacToeSVG {
+    color: #4a0652;
+}
+
+button.boardButtonField:hover,
+button.opponentButton:hover {
     background-color: #afdf88;
     box-shadow: 0px 0px 10px #c4eb93;
     cursor: pointer;
+}
+
+
+@media (max-width: 425px) {
+    .chooseOpponentWrapper {
+        flex-direction: column;
+    }
+
+    button.opponentButton {
+        width: 70%;
+        font-size: 1.5em;
+    }
+
+
+    button.opponentButton svg {
+        font-size: 1.5em;
+    }
 }
