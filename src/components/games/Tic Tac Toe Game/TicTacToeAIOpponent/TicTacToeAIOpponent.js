@@ -12,13 +12,9 @@ export function TicTacToeAIOpponent() {
     const [currentPlayer, setCurrentPlayer] = useState('X');
     const [gameScore, setGameScore] = useState({ 'O': 0, 'X': 0 });
     const [winner, setWinner] = useState('');
-    // const [gameStatus, setGameStatus] = useState('ongoing');
-    const [gameStatus, setGameStatus] = useState('X');
+    const [gameStatus, setGameStatus] = useState('ongoing');
     const [isWaitingForResponse, setIsWaitingForResponse] = useState(false);
     const { username } = useAuthContext();
-
-    // TODO: Add  
-    // - button New game
 
     useEffect(() => {
         if (currentPlayer === 'O' && gameStatus === 'ongoing') {
