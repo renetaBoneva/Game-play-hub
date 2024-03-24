@@ -4,6 +4,7 @@ import { faRobot, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 
 import './TicTakToe.css'
 import { TicTacToeAIOpponent } from './TicTacToeAIOpponent/TicTacToeAIOpponent';
+import { ChooseFriendSign } from './ChooseFriendSign/ChooseFriendSign';
 
 export function TicTacToeGame() {
     const [isAI, setIsAI] = useState(false);
@@ -20,7 +21,7 @@ export function TicTacToeGame() {
     if (isAI) {
         return <TicTacToeAIOpponent />
     } else if (isFriend) {
-        return <></>
+        return <ChooseFriendSign />
     } else {
         return (
             <section className='chooseOpponentWrapper'>
