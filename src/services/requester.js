@@ -1,7 +1,4 @@
-// const serverAPI = 'https://server-game-play-hub.onrender.com';
-const serverAPI = 'http://localhost:3333';
-
-// import { serverAPI } from "../constants";
+import { serverAPI } from "../constants";
 
 async function Req(method, url, data) {
     let user = localStorage.getItem('%user%');
