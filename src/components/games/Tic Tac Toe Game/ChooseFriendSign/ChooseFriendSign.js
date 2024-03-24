@@ -16,7 +16,7 @@ export function ChooseFriendSign() {
     }
 
     if (sign && (sign === 'O' || sign === 'X')) {
-        return <TicTacToeFriendOpponent userSign={sign}/>
+        return <TicTacToeFriendOpponent inputSign={sign}/>
     } else {
         return (
             <section className='chooseSignWrapper'>
