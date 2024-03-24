@@ -9,7 +9,13 @@ export function Catalog() {
             "name": 'Memory game',
             "coverImg": "memory_game/memory_game_cover.png",
             'link': '/memoryGame'
-        }
+        },
+        {
+            "_id": 2,
+            "name": 'Tic Tac Toe game',
+            "coverImg": "tic_tac_toe_game/tic_tac_toe_game_cover.png",
+            'link': '/ticTacToeGame'
+        },
     ];
 
     return (

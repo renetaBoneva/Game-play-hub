@@ -75,7 +75,7 @@ export function AuthProvider({ children }) {
         user,
         guest,
         _userID: user?._userID,
-        username: user ? user.username : guest.username,
+        username: user ? user.username : guest?.username,
         onLoginHandler,
         onGuestRegistrationHandler,
         onRegisterHandler,
