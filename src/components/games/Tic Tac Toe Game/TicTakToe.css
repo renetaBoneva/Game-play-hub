@@ -75,7 +75,11 @@ button.newGameButton {
     padding: 0.5em 1em;
     border-radius: 0.5em;
     color: #ebfbbb;
-    background-color: #75c253;
+    background-color: #75c253;    
+}
+
+button.newGameButton {
+    margin-top: 1em;
 }
 
 button.newGameButton:hover,
