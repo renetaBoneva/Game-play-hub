@@ -53,6 +53,10 @@ svg {
   fill: #ebfbbb;
 }
 
+button {  
+  font-family: "Madimi One", sans-serif;
+}
+
 /* Game wrapper */
 div.gameWrapper {
   display: flex;

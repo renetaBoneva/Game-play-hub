@@ -32,6 +32,41 @@ button.opponentButton {
     font-weight: bold;
 }
 
+.currentPlayerWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.5em;
+}
+
+.currentPlayer {
+    border-radius: 0.5em;
+    padding: 0 0.5em;
+    background-color: #75c253;
+}
+
+.winnerP {
+    font-size: 1.8em;
+}
+
+button.newRoundButton,
+button.newGameButton {
+    border: none;
+    align-self: center;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    color: #ebfbbb;
+    background-color: #75c253;
+}
+
+button.newGameButton:hover,
+button.newRoundButton:hover {
+    box-shadow: 0px 0px 10px #c4eb93;
+    cursor: pointer;
+    color: #4a0652;
+}
+
 /* Choose game opponent section */
 .chooseOpponentWrapper {
     display: flex;
@@ -68,7 +103,6 @@ button.opponentButton:hover {
     box-shadow: 0px 0px 10px #c4eb93;
     cursor: pointer;
 }
-
 
 @media (max-width: 425px) {
     .chooseOpponentWrapper {
