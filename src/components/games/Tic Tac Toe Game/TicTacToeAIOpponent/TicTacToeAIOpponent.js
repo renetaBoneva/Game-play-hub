@@ -1,17 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Fragment, useEffect, useState } from 'react';
 import * as ticTacToeGameService from '../../../../services/ticTacToeService'
+import { useAuthContext } from '../../../../hooks/useAuthContext';
 
 export function TicTacToeAIOpponent() {
-    
     const [board, setBoard] = useState([
         ['', '', ''],
         ['', '', ''],
         ['', '', ''],
     ]);
     const [currentPlayer, setCurrentPlayer] = useState('X');
-    const [gameStatus, setGameStatus] = useState('ongoing');
+    const [gameScore, setGameScore] = useState({ 'O': 0, 'X': 0 });
+    const [winner, setWinner] = useState('');
+    // const [gameStatus, setGameStatus] = useState('ongoing');
+    const [gameStatus, setGameStatus] = useState('X');
     const [isWaitingForResponse, setIsWaitingForResponse] = useState(false);
+    const { username } = useAuthContext();
+
+    // TODO: Add  
+    // - button New game
 
     useEffect(() => {
         if (currentPlayer === 'O' && gameStatus === 'ongoing') {
@@ -20,45 +27,51 @@ export function TicTacToeAIOpponent() {
     }, [currentPlayer, gameStatus]);
 
     useEffect(() => {
-        checkGameStatus();
-
-        function checkGameStatus() {
-            for (let i = 0; i < 3; i++) {
-                // if there is a row match
-                if (board[i][0] === board[i][1]
-                    && board[i][2] === board[i][1]
-                    && board[i][0] !== '') {
-                    setGameStatus(`${board[1][1]} wins!`);
-                    return;
-                }
-
-                // if there is a column match
-                if (board[0][i] === board[1][i]
-                    && board[2][i] === board[1][i]
-                    && board[0][i] !== '') {
-                    setGameStatus(`${board[1][1]} wins!`);
-                    return;
-                }
-
-            }
-
-            // first diagonal
-            if (board[0][0] === board[1][1]
-                && board[2][2] === board[1][1]
-                && board[0][0] !== ''
-            ) {
-                setGameStatus(`${board[1][1]} wins!`);
+        for (let i = 0; i < 3; i++) {
+            // if there is a row match
+            if (board[i][0] === board[i][1]
+                && board[i][2] === board[i][1]
+                && board[i][0] !== '') {
+                setGameStatus(`${board[i][0]} wins!`);
+                setWinner(board[i][0])
                 return;
             }
 
-            //second diagonal
-            if (board[0][2] === board[1][1]
-                && board[2][0] === board[1][1]
-                && board[0][2] !== ''
-            ) {
-                setGameStatus(`${board[1][3]} wins!`);
+            // if there is a column match
+            if (board[0][i] === board[1][i]
+                && board[2][i] === board[1][i]
+                && board[0][i] !== '') {
+                setGameStatus(`${board[0][i]} wins!`);
+                setWinner(board[0][i])
                 return;
             }
+
+        }
+
+        // first diagonal
+        if (board[0][0] === board[1][1]
+            && board[2][2] === board[1][1]
+            && board[0][0] !== ''
+        ) {
+            setGameStatus(`${board[0][0]} wins!`);
+            setWinner(board[0][0])
+            return;
+        }
+
+        //second diagonal
+        if (board[0][2] === board[1][1]
+            && board[2][0] === board[1][1]
+            && board[0][2] !== ''
+        ) {
+            setGameStatus(`${board[0][2]} wins!`);
+            setWinner(board[0][2]);
+            return;
+        }
+
+        if (winner && winner === 'O') {
+            setGameScore(score => ({ ...score, 'O': score.O++ }));
+        } else if (winner && winner === 'X') {
+            setGameScore(score => ({ ...score, 'X': score.X++ }));
         }
     }, [board]);
 
@@ -99,10 +112,35 @@ export function TicTacToeAIOpponent() {
         );
     }
 
+    function handleNewRound() {
+        setBoard([
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', ''],
+        ]);
+        setWinner('');
+        setGameStatus('ongoing');
+        setCurrentPlayer('X');
+    }
+
+    function handleNewGame() {
+        handleNewRound();
+        setGameScore({ 'O': 0, 'X': 0 });
+    }
+
     return (
         <div className='gameWrapper ticTacToeWrapper'>
             <h2>Tic Tac Toe</h2>
-            <p>Current player: {currentPlayer}</p>
+            {gameStatus === 'ongoing'
+                ? (<><p>Current player:</p>
+                    <div className='currentPlayerWrapper'>
+                        <p className={isWaitingForResponse ? 'waitingPlayer' : 'currentPlayer'}>{username ? username : 'Player'}: X</p>
+                        <p className={isWaitingForResponse ? 'currentPlayer' : 'waitingPlayer'}>AI: O</p>
+                    </div></>)
+                : (<>
+                    <p className='winnerP'>The winner is {winner === 'O' ? 'AI (O)' : (username ? `${username} (X)` : 'Player  (X)')}</p>
+                    <button className='newRoundButton' onClick={() => handleNewRound()}>New round</button>
+                </>)}
             <div className='ticTacToeBoard'>
                 {board.map((row, i) => {
                     return (
@@ -112,7 +150,14 @@ export function TicTacToeAIOpponent() {
                     );
                 })}
             </div>
-            <p>Game status: {gameStatus}</p>
+            <div className='tikTacToeScoreWrapper'>
+                <p>Game score:</p>
+                <div className='currentPlayerWrapper'>
+                    <p className=''>{username ? username : 'Player'} (X): {gameScore.X}</p>
+                    <p className=''>AI (O): {gameScore.O}</p>
+                </div>
+                <button className='newGameButton' onClick={() => handleNewGame()}>New game</button>
+            </div>
         </div>
     );
 }
