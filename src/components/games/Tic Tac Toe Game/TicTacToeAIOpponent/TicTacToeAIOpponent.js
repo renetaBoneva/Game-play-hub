@@ -18,11 +18,31 @@ export function TicTacToeAIOpponent() {
 
     useEffect(() => {
         if (currentPlayer === 'O' && gameStatus === 'ongoing') {
-            makeAIMove()
+            makeAIMove().then(res => {
+                const response = res.aiResponse;
+                const newBoard = JSON.parse(response).board;
+
+                setBoard(newBoard);
+                setCurrentPlayer('X');
+                setIsWaitingForResponse(false);
+            });
         }
     }, [currentPlayer, gameStatus]);
 
     useEffect(() => {
+        checkGameStatus();
+    }, [board]);
+
+    useEffect(() => {
+        if (winner && winner === 'O') {
+            setGameScore(score => ({ ...score, 'O': score.O++ }));
+        } else if (winner && winner === 'X') {
+            setGameScore(score => ({ ...score, 'X': score.X++ }));
+        }
+
+    }, [winner])
+
+    function checkGameStatus() {
         for (let i = 0; i < 3; i++) {
             // if there is a row match
             if (board[i][0] === board[i][1]
@@ -63,35 +83,26 @@ export function TicTacToeAIOpponent() {
             setWinner(board[0][2]);
             return;
         }
-
-        if (winner && winner === 'O') {
-            setGameScore(score => ({ ...score, 'O': score.O++ }));
-        } else if (winner && winner === 'X') {
-            setGameScore(score => ({ ...score, 'X': score.X++ }));
-        }
-    }, [board]);
-
+    }
+    
     async function makeAIMove() {
         setIsWaitingForResponse(true);
         try {
             const aiResponse = await ticTacToeGameService.aiResponse(board);
 
-            console.log(aiResponse);
+            return aiResponse;
         } catch (err) {
             console.log(err);
         }
-
-        setIsWaitingForResponse(false);
     }
 
     function handleButtonFieldClick(row, col) {
         if (board[row][col] === ''
             && currentPlayer === 'X'
             && gameStatus === 'ongoing') {
-            setBoard(b => {
-                b[row][col] = 'X'
-                return b;
-            })
+
+            board[row][col] = 'X'
+            setBoard([...board]);
             setCurrentPlayer('O');
         }
     }
