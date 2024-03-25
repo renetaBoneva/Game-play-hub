@@ -36,8 +36,8 @@ export function AuthProvider({ children }) {
             const user = await authService.login(loginData);
 
             // TODO: check if users's levels are bigger than unauthorized
-            dispatch(addGamer({user}));
-            setUser(user.accessToken);
+            dispatch(addGamer({ user }));
+            setUser({ 'accessToken': user.accessToken });
 
             navigate('/catalog');
             dispatch(stopLoading());
@@ -59,8 +59,8 @@ export function AuthProvider({ children }) {
             const registerData = { email, username, password, rePass };
             const user = await authService.register(registerData);
 
-            dispatch(addGamer({user}));
-            setUser(user.accessToken);
+            dispatch(addGamer({ user }));
+            setUser({ 'accessToken': user.accessToken });
             navigate('/catalog');
             dispatch(stopLoading());
         } catch (err) {
