@@ -4,14 +4,14 @@ import { useEffect } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 
 export function IsNotUserOrGuestGuard() {
-    const { user, guest } = useAuthContext();
+    const { isUserOrGuest } = useAuthContext();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!guest && !user) {
+        if (!isUserOrGuest) {
             navigate('/userOrGuest')
         }
-    }, [user, guest, navigate])
+    }, [isUserOrGuest, navigate])
 
     return (
         <div className='contentWrapper mainWrapper'>

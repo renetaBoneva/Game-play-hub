@@ -1,19 +1,34 @@
-import { createContext } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 import * as authService from '../services/authService'
-import { toast } from "react-toastify";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import { stopLoading } from "../redux/loader/loader-slice";
-import { useDispatch } from "react-redux";
+import { addGamer, addGuest, onGamerLogout } from "../redux/user/user-slice";
 
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-    const [user, setUser, removeUser] = useLocalStorage('%user%');
-    const [guest, setGuest, removeGuest] = useLocalStorage('%guest%');
+    const userState = useSelector(state => state.user);
+    const [userLS, setUser, removeUser] = useLocalStorage('%user%');
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (userLS && Object.keys({ userState }).length === 0) {
+            authService.isValidAccessToken()
+                .then((res) => {
+                    const { _userID, email, username, accessToken } = res;
+                    dispatch(addGamer({ _userID, email, username, accessToken }));
+                })
+                .catch((err) => {
+                    localStorage.removeItem('%user%');
+                    toast.error(err);
+                });
+        }
+    });
 
     async function onLoginHandler({ email, password }) {
         try {
@@ -21,8 +36,9 @@ export function AuthProvider({ children }) {
             const user = await authService.login(loginData);
 
             // TODO: check if users's levels are bigger than unauthorized
-            setUser(user);
-            removeGuest();
+            dispatch(addGamer({user}));
+            setUser(user.accessToken);
+
             navigate('/catalog');
             dispatch(stopLoading());
         } catch (err) {
@@ -32,12 +48,8 @@ export function AuthProvider({ children }) {
     }
 
     function onGuestRegistrationHandler({ username }) {
-        if (!user && !guest) {
-            setGuest({ username });
-        } else {
-            removeUser();
-            setGuest({ username });
-        }
+        dispatch(addGuest({ username }));
+        removeUser();
         navigate('/catalog')
         dispatch(stopLoading());
     }
@@ -47,8 +59,8 @@ export function AuthProvider({ children }) {
             const registerData = { email, username, password, rePass };
             const user = await authService.register(registerData);
 
-            setUser(user);
-            removeGuest();
+            dispatch(addGamer({user}));
+            setUser(user.accessToken);
             navigate('/catalog');
             dispatch(stopLoading());
         } catch (err) {
@@ -57,9 +69,9 @@ export function AuthProvider({ children }) {
         }
     }
 
-    async function onLogoutHandler() {
+    function onLogoutHandler() {
         try {
-            // await authService.logout();
+            dispatch(onGamerLogout());
             removeUser();
             navigate('/userOrGuest');
             dispatch(stopLoading());
@@ -69,19 +81,16 @@ export function AuthProvider({ children }) {
         }
     }
 
-    
-
     const context = {
-        user,
-        guest,
-        _userID: user?._userID,
-        username: user ? user.username : guest?.username,
+        userState,
+        _userID: userState?._userID,
+        username: userState.username,
         onLoginHandler,
         onGuestRegistrationHandler,
         onRegisterHandler,
         onLogoutHandler,
-        isAuthenticated: !!user?.accessToken,
-        isUserOrGuest: !!user || !!guest
+        isAuthenticated: !!userState?.accessToken,
+        isUserOrGuest: !!userState.username
     }
 
     return (

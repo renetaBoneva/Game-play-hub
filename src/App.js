@@ -24,6 +24,12 @@ import { IsAuthenticated } from './components/common/IsAuthenticated/IsAuthentic
 
 function App() {
   const isLoading = useSelector(state => state.isLoading);
+  /*TODO:
+    - Store just access token in local storage and the other things with redux
+    - Add more levels to Memory game
+    - Store user's levels in Memory game and max levels
+    - Make get request for games on Catalog rendering
+  */
 
   return (
     <>
