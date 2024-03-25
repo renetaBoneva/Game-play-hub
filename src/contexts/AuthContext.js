@@ -17,16 +17,21 @@ export function AuthProvider({ children }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (userLS && Object.keys({ userState }).length === 0) {
+        const lsUser = localStorage.getItem('%user%');
+
+        if (lsUser && Object.keys(userState).length === 0) {
             authService.isValidAccessToken()
                 .then((res) => {
                     const { _userID, email, username, accessToken } = res;
-                    dispatch(addGamer({ _userID, email, username, accessToken }));
+                    const user = { _userID, email, username, accessToken };
+                    dispatch(addGamer({user}));
                 })
                 .catch((err) => {
                     localStorage.removeItem('%user%');
                     toast.error(err);
                 });
+        } else if (userLS) {
+            // just to remove the warning for userLS
         }
     });
 
