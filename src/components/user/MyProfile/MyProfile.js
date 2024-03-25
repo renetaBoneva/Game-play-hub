@@ -10,7 +10,9 @@ export function MyProfile() {
     const { _userID } = useAuthContext();
 
     useEffect(() => {
-        getUserById(_userID).then(res => setUserInfo(res)).catch(err => toast.error(err));
+        getUserById(_userID)
+            .then(res => setUserInfo(res))
+            .catch(err => toast.error(err))
     }, [_userID]);
 
     return (
