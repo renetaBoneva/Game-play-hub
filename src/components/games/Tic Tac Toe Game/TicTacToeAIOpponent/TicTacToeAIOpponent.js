@@ -27,6 +27,10 @@ export function TicTacToeAIOpponent() {
                 setIsWaitingForResponse(false);
             });
         }
+
+        if (currentPlayer === 'O' && (board[0].join('') + board[1].join('') + board[2].join('')).length === 0) {
+            handleNewRound()
+        }
     }, [currentPlayer, gameStatus]);
 
     useEffect(() => {
@@ -95,8 +99,16 @@ export function TicTacToeAIOpponent() {
     async function makeAIMove() {
         setIsWaitingForResponse(true);
         try {
-            const aiResponse = await ticTacToeGameService.aiResponse(board);
+            const leftMovesBeforeRes = 9 - (board[0].join('') + board[1].join('') + board[2].join('')).length;
+            let leftMovesAfterRes = 100;
+            let aiResponse;
 
+            while (leftMovesBeforeRes - 1 !== leftMovesAfterRes) {
+                aiResponse = await ticTacToeGameService.aiResponse(board);
+                const newBoard = JSON.parse(aiResponse.aiResponse).board;
+
+                leftMovesAfterRes = 9 - (newBoard[0].join('') + newBoard[1].join('') + newBoard[2].join('')).length;
+            }
             return aiResponse;
         } catch (err) {
             console.log(err);
@@ -110,6 +122,7 @@ export function TicTacToeAIOpponent() {
 
             board[row][col] = 'X'
             setBoard([...board]);
+            checkGameStatus();
             setCurrentPlayer('O');
         }
     }
@@ -127,14 +140,14 @@ export function TicTacToeAIOpponent() {
     }
 
     function handleNewRound() {
+        setCurrentPlayer('X');
+        setWinner('');
         setBoard([
             ['', '', ''],
             ['', '', ''],
             ['', '', ''],
         ]);
-        setWinner('');
         setGameStatus('ongoing');
-        setCurrentPlayer('X');
     }
 
     function handleNewGame() {
