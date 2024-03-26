@@ -83,8 +83,15 @@ export function TicTacToeAIOpponent() {
             setWinner(board[0][2]);
             return;
         }
+
+        // If there are no more moves left but there is no winner
+        if ((board[0].join('') + board[1].join('') + board[2].join('')).length >= 9) {
+            setGameStatus(`Nobody wins!`);
+            setWinner('');
+            return;
+        }
     }
-    
+
     async function makeAIMove() {
         setIsWaitingForResponse(true);
         try {
@@ -145,7 +152,9 @@ export function TicTacToeAIOpponent() {
                         <p className={isWaitingForResponse ? 'currentPlayer' : 'waitingPlayer'}>AI: O</p>
                     </div></>)
                 : (<>
-                    <p className='winnerP'>The winner is {winner === 'O' ? 'AI (O)' : (username ? `${username} (X)` : 'Player  (X)')}</p>
+                    {gameStatus !== `Nobody wins!` && (
+                        <p className='winnerP'>The winner is {winner === 'O' ? 'AI (O)' : (username ? `${username} (X)` : 'Player  (X)')}</p>
+                    )}
                     <button className='newRoundButton' onClick={() => handleNewRound()}>New round</button>
                 </>)}
             <div className='ticTacToeBoard'>

@@ -56,6 +56,13 @@ export function TicTacToeFriendOpponent({ inputSign }) {
             setWinner(board[0][2]);
             return;
         }
+
+        // If there are no more moves left but there is no winner
+        if ((board[0].join('') + board[1].join('') + board[2].join('')).length >= 9) {
+            setGameStatus(`Nobody wins!`);
+            setWinner('');
+            return;
+        }
     }, [board]);
 
     useEffect(() => {
@@ -113,10 +120,13 @@ export function TicTacToeFriendOpponent({ inputSign }) {
                         <p className={currentPlayer === userSign ? 'waitingPlayer' : 'currentPlayer'}>{username ? `${username}'s friend` : 'Player 2'}: {friendsSign}</p>
                     </div></>)
                 : (<>
-                    <p className='winnerP'>The winner is {winner === userSign
-                        ? (username ? `${username} (${userSign})` : `Player 1 (${userSign})`)
-                        : (username ? `${username}'s friend (${friendsSign})` : `Player 2 (${friendsSign})`)
-                    }</p>
+                    {gameStatus !== `Nobody wins!` && (
+                        <p className='winnerP'>The winner is {winner === userSign
+                            ? (username ? `${username} (${userSign})` : `Player 1 (${userSign})`)
+                            : (username ? `${username}'s friend (${friendsSign})` : `Player 2 (${friendsSign})`)
+                        }</p>
+                    )}
+                    
                     <button className='newRoundButton' onClick={() => handleNewRound()}>New round</button>
                 </>)}
             <div className='ticTacToeBoard'>
