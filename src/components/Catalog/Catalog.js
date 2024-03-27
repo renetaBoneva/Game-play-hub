@@ -15,7 +15,7 @@ export function Catalog() {
             })
             .catch(err => toast.error(err.message));
 
-    })
+    }, []);
 
     return (
         <div className="gameCoverWrapper">
