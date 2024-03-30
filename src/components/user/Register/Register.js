@@ -1,3 +1,4 @@
+import './Register.css'
 import { useForm } from "../../../hooks/useForm";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 
@@ -12,6 +13,7 @@ export function Register() {
 
     return (
         <form method="POST" id="registerForm" onSubmit={onSubmit}>
+            <h2>Register</h2>
             <div className="inputWrapper">
                 <label htmlFor="email" >Email</label>
                 <input
