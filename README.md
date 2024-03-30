@@ -11,6 +11,7 @@ https://game-play-hub.onrender.com/catalog
 | [Project design](#project-design)
 | [Description](#description)
 |   - [State management](#state-management)
+|   - [Error page](#error-page)
 | [Getting Started](#getting-started)
 | [Backend](#backend)
 
@@ -34,9 +35,11 @@ Game play hub is a website for various simply games. Here users can play with or
 I decided to use Redux to handle the current user information because it's more secure. For better user experience, I chose to save the user's access token in local storage. This way, gamers don't need to log in to their profiles every time they visit the website. 
 
 *   Navigation for unlogged users
+
 ![unlogged nav img](https://github.com/renetaBoneva/Game-play-hub/blob/main/public/readmeImg/desktop-nav.png)
 
 *  Navigation for logged users
+
 ![logged nav img](https://github.com/renetaBoneva/Game-play-hub/blob/main/public/readmeImg/logged-nav.png)
 
 ### Error page 
