@@ -34,9 +34,10 @@ Game play hub is a website for various simply games. Here users can play with or
 I decided to use Redux to handle the current user information because it's more secure. For better user experience, I chose to save the user's access token in local storage. This way, gamers don't need to log in to their profiles every time they visit the website. 
 
 *   Navigation for unlogged users
-![error page img](https://github.com/renetaBoneva/Game-play-hub/blob/main/public/readmeImg/error.png)
+![unlogged nav img](https://github.com/renetaBoneva/Game-play-hub/blob/main/public/readmeImg/desktop-nav.png)
 
 *  Navigation for logged users
+![logged nav img](https://github.com/renetaBoneva/Game-play-hub/blob/main/public/readmeImg/logged-nav.png)
 
 ### Error page 
 I've used the react-toastify library to manage error and success notification, but  in the case of attempting to access a non-existing page, the system should automatically redirect to `/error`.
